@@ -1,0 +1,314 @@
+/* FORMBUILDER Styles */
+
+.mura-formbuilder-anchor {
+	line-height: 1px;
+	visibility: hidden;
+}
+.mura-formbuilder-title {
+	color: white;
+	height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding: 0px 10px 0px 10px;
+	line-height: 40px;
+	margin-bottom: 0px;
+	text-transform: uppercase;
+}
+h3.mura-formbuilder-title {
+	margin: 0px;
+
+}
+form.mura-formbuilder {
+    display: block;
+    padding: 10px !important;
+    margin: 0;
+}
+form.mura-formbuilder .control-group {
+	padding-top: 15px;
+}
+#primary form.mura-formbuilder label {
+    color: Black;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px White, -1px -1px 1px White;
+    padding: 0px 10px 0px 15px;   
+}
+#primary #mura-formbuilder-footer label {
+    color: White;
+    font-weight: bold;
+    text-shadow: none;
+   
+}
+form.mura-formbuilder .uploadSuccess,
+form.mura-formbuilder .uploadFail {
+    padding: 5px 15px;
+    font-size: .8em;
+}
+form.mura-formbuilder .uploadSuccess b {
+    color: Lime;
+}
+form.mura-formbuilder .uploadFail b {
+    color: Red;
+}
+
+
+form.mura-formbuilder .control-group label {
+   
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/lightstone-sm.jpg);
+
+	display: inline-block;
+	width: 95%;
+	text-align: left;
+	position: relative;
+}
+form.mura-formbuilder .control-group input,
+form.mura-formbuilder .control-group textarea {
+	width: 100%;
+}
+form.mura-formbuilder .control-group input {
+    margin-left: 1px;
+}
+form.mura-formbuilder .mura-formbuilder-data .control-group {
+	padding-top: 0px;
+}
+form.mura-formbuilder .mura-form-textarea label {
+	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+}
+form.mura-formbuilder .mura-formbuilder-legend {
+	display: none;
+}
+form.mura-formbuilder .mura-formbuilder-form {
+	display: block;
+	width: 100%; 
+
+}
+.mura-form-radio p,
+.mura-form-checkbox p {
+	width: 45%;
+	display: inline-block;
+}
+.mura-form-radio div, 
+.mura-form-checkbox div {
+	width: 50%;
+	display: inline-block;
+}
+form.mura-formbuilder .mura-form-radio label, 
+form.mura-formbuilder .mura-form-checkbox label {
+	display: inline-block;
+	width: auto;
+}
+.mura-formbuilder-tbl {
+	display: table;
+	width: 100%;
+}
+.mura-form-textblock {
+	padding: 5px 10px;
+	border: 1px solid silver;
+	height: 250px; 
+	overflow: auto;
+	margin: 0 auto;
+}
+.mura-form-textblock p {
+    font-size: .8em;
+
+    line-height: 1.5em;
+    text-align: justify;
+    margin: 0 0 10px 0;
+}
+.mura-form-textblock strong {
+    color: Goldenrod;
+}
+.mura-formbuilder-data {
+	display: table-cell;
+	vertical-align: top;
+	padding: 10px 25px 20px 25px;
+}
+form.mura-formbuilder .mura-formbuilder-data label {
+	display: inline-block;
+	text-align: right;
+	width: 50%;
+}
+form.mura-formbuilder .mura-formbuilder-data .mura-form-radio input,
+form.mura-formbuilder .mura-formbuilder-data .mura-form-checkbox input {
+	width: auto;
+}
+form.mura-formbuilder .mura-formbuilder-data .mura-form-radio label,
+form.mura-formbuilder .mura-formbuilder-data .mura-form-checkbox label {
+	width: auto;
+}
+form.mura-formbuilder .mura-formbuilder-data label {
+	display: inline-block;
+	text-align: right;
+	width: 50%;
+}
+
+form.mura-formbuilder .mura-formbuilder-data label input {
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+form.mura-formbuilder .mura-formbuilder-data .mura-form-textarea label {
+	text-align: left;
+	width: 95%;
+	padding: 0px 0px 10px 0px;
+}
+
+form.mura-formbuilder .req label:before {
+    content: "*";
+    position: absolute;
+    color: Red;
+    font-weight: bold;
+    left: 3px;
+    text-decoration: none;
+
+}
+form.mura-formbuilder label ins {
+	color: Red;
+	font-weight: bold;
+	text-decoration: none;
+}
+form.mura-formbuilder select {
+	width: 100%;
+	margin-left: 2px;
+}
+form.mura-formbuilder input {
+	/* padding-left: 5px; */
+}
+#mura-formbuilder-footer {
+	display: table;
+	width: 100%;
+	padding: 0px;	
+}
+#mura-formbuilder-footer .form-actions {
+	display: table-cell;
+	text-align: right;
+	padding: 10px 0px;
+}
+#mura-formbuilder-footer .form-actions input[type="submit"] {
+	border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/darkstone-sm.jpg);
+    background-color: black;
+    box-shadow: 0 0 25px Black;
+    text-shadow: 1px 1px 1px Black, -1px -1px 1px Black;
+	text-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	height: 35px;
+	width: 100px;
+}
+#mura-formbuilder-footer #agree input[type="submit"] {
+    width: 260px;
+}
+#mura-formbuilder-footer .form-actions input[type="submit"]:hover {
+    color: Gold;
+    box-shadow: inset 0 0 25px Black, 0 0 25px Black;
+}
+#mura-formbuilder-footer .form-actions input[type="submit"]:active {
+    background-color: black;
+    background-image: none;
+	color: Goldenrod;
+}
+#mura-formbuilder-footer .form-actions input[type="submit"]:disabled {
+    background-color: Black;
+    border: 5px solid #282828;
+    box-shadow: 0 0 50px Black;
+    color: Grey;
+}
+
+#mura-formbuilder-footer .mura-formbuilder-instructions {
+	display: table-cell;
+	font-weight: bold;
+	font-size: .8em;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: middle;
+}
+
+.mura-formbuilder-success {
+
+}
+.mura-formbuilder-success p {
+}
+	/* Error Styles */
+.mura-formbuilder-errors {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	padding: 10px;
+	background-color: Maroon;
+	color: White;
+	font-size: .8em;
+}
+.mura-formbuilder-errors b.alert {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+}
+
+.mura-formbuilder-errors img {
+	padding-right: 3px;
+	padding-bottom: 1px;
+	vertical-align: middle;
+}
+form.mura-formbuilder .control-group input.err {
+	border: 2px dotted #F3940C;
+	background-color: LemonChiffon;
+}
+form.mura-formbuilder .control-group textarea.err {
+	border: 2px dotted #F3940C;
+	background-color: LemonChiffon;
+}
+form.mura-formbuilder .control-group select.err {
+	border: 2px dotted #F3940C;
+	background-color: LemonChiffon;
+}
+.mura-formbuilder-tooltip,
+.mura-formbuilder-tooltip-manual {
+	border-radius: 10px;
+	background-color: LemonChiffon;
+	background-image: none !important;
+	border: 2px solid #F3940C !important;
+	-webkit-box-shadow: 0 0 5px #F3940C;
+	box-shadow: 0 0 5px #F3940C;
+	padding: 5px !important;
+	color: Black;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 17px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.mura-formbuilder-tooltip b.alert,
+.mura-formbuilder-tooltip-manual b {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+}
+.mura-formbuilder-tooltip img,
+.mura-formbuilder-tooltip-manual img {
+	padding-right: 3px;
+	padding-bottom: 1px;
+	vertical-align: middle;
+}
+
+/* END FORMBUILDER Styles */

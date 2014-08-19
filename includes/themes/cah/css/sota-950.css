@@ -1,0 +1,14 @@
+#engrave {
+    position: relative;
+    margin: 35px auto;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    border-image: none;
+}
+
+.quickmenu {
+    min-width: 1000px;
+    }
+
+/* EOF */

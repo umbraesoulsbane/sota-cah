@@ -1,0 +1,2552 @@
+/* @override 
+	http://mura:8500/5.4/merced/includes/themes/merced/css/merced.css
+	http://mura:8500/5.4/default/includes/themes/merced/css/merced.css
+	http://mura:8500/5.4/default/includes/themes/merced-html5/css/merced.css
+*/
+
+/*
+Theme:  Merced
+Author: Blue River Interactive Group
+*/
+
+/* @group GLOBALS
+===================================== */
+html { 
+	background: url(../images/cah/darkstone.jpg);
+}
+html, body {
+    height:100%;
+    width:100%;
+  	margin: 0px;
+	padding: 0px;
+}
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: #434343;
+	}
+	
+* { -moz-outline: 0; }
+
+hr {
+	clear: both;
+	height: 0;
+	margin: 2em 0;
+	border: 1px solid #ccc;
+	border-width: 1px 0 0;
+	}
+
+a {
+	text-decoration: none;
+	color: Gold;
+	}
+
+a:hover {
+	text-decoration: underline;
+	color: Goldenrod;
+	}
+
+p.intro {
+	color: #666;
+	line-height: 1.4em;
+	margin-bottom: 1.25em;
+	}
+
+.article img {
+    /*
+	padding: 5px 25px;
+	*/
+	padding-left: 15px;
+}
+span.highlight {
+    background-color: rgba(0,0,0,0.1);
+    border: 2px dotted Sienna;
+    font-weight: bold;
+    color: Sienna;
+    padding: 10px;
+    }
+
+/* @group Callout 
+======================================*/
+#primary .callout {
+    letter-spacing: .1em;
+}
+#primary .callout h3 {
+    color: Gold;
+}
+#primary .callout hr {
+    border-color: #232323;
+}
+#primary .callout .category {
+    position: relative;
+    display: block;
+    font-size: .9em;
+}
+#primary .callout .category p {
+    padding: 5px;
+    background-color: #232323;   
+    margin: 0; 
+}
+#primary .callout .category div {
+    position: absolute;
+    padding: 5px;
+    right: 0;
+}
+
+#primary .callout .flipper {
+    position: relative;
+    display: block;
+    font-size: .8em;
+}
+#primary .callout .flipper p {
+    padding: 5px;
+    margin: 0 0 25px 0; 
+}
+#primary .callout .flipper div {
+    position: absolute;
+    padding: 5px;
+    right: 0;
+}
+#primary .callout .flipper a {
+    padding: 2px;
+    color: Silver;
+}
+#primary .callout .flipper a:hover {
+    color: White;
+    text-decoration: none;
+}
+#primary .callout .flipper a strong {
+    color: GoldenRod;
+    padding: 0 2px;
+}
+#primary .callout .flipper a:hover strong {
+    color: Gold;
+    text-decoration: none;
+}
+
+#primary .callout dl {
+}
+#primary .callout dt {
+    display: block;
+    float: left;
+    padding: 5px 10px 5px 0;
+    margin: 0;
+    font-size: .8em;
+    font-weight: bold;
+    color: white;
+}
+#primary .callout dt.first {
+    padding: 5px 10px 5px 45px;
+}
+#primary .callout dd {
+    display: block;
+    float: left;
+    padding: 5px 10px;
+    margin: 0 11em 0 0;
+    font-size: .8em;
+    border: 1px solid #232323;
+}
+#primary .callout dd.last {
+    margin: 0 0 0 0;
+}
+#primary .callout .description {
+    padding: 0 25px;
+}
+#primary .callout .description p {
+    margin-top: 0;
+}
+#primary .callout .description .label {
+    font-size: .9em;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0;
+    
+}
+
+/* @group END Callout 
+======================================*/
+
+
+/* @group Globals - Tables
+===================================== */
+
+.article table {
+	width: 100%;
+	margin-top: 30px;
+	}
+
+th {
+	border: 1px solid;
+	border-color: #becfd6 #becfd6 #dce6ea;
+	color: #32566c;
+	background: #e9f3f7;
+	}
+
+td {
+	padding: 10px;
+	border: 1px solid #d6d6d6;
+	}
+
+tr.alt td { background: #eee; }  /*Move*/ 
+
+.myassets .dataTables_filter input {
+    border-radius: 5px;
+    border: 3px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-color: Black;
+    color: Silver;
+}
+.myassets .dataTables_info {
+    font-size: .8em;
+    color: Silver !important;
+}
+#primary .myassets label {
+    color: White;
+    font-size: .8em;
+}
+.myassets {
+    margin-top: 10px;
+}
+.myassets table {
+    width: 100%;
+    border: none;
+    border-spacing: 5px;
+    border-collapse: separate;
+    }
+.myassets tbody {
+    /*
+    background-image: url(../images/cah/darkstone-med.jpg);
+    */
+}
+
+.myassets th {
+    color: Black;
+    text-shadow: 1px 1px 0 Silver, 1px 1px 0 Black;
+    font-weight: bolder;
+    background-color: SlateGray;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/lightstone-sm.jpg);
+
+}
+.myassets thead .sorting:after {
+    content: url("../images/cah/datatable/sort_both.png");
+
+}
+.myassets thead .sorting_asc:after {
+    content: url("../images/cah/datatable/sort_asc.png");
+}
+.myassets thead .sorting_desc:after {
+    content: url("../images/cah/datatable/sort_desc.png");
+}
+.myassets thead .sorting_asc_disabled:after {
+    content: url("../images/cah/datatable/sort_asc_disabled.png");
+}
+.myassets thead .sorting_desc_disabled:after {
+    content: url("../images/cah/datatable/sort_desc_disabled.png");
+}
+.myassets tfoot th,
+.myassets tfoot td {
+    border-radius: 0px;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+.myassets tfoot tr:hover {
+    background-color: Black;
+}
+.myassets tfoot select {
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    width: 100%;
+    background-image: url(../images/cah/lightstone-sm.jpg);
+    color: Black;
+}
+
+.myassets tr:hover, .myassets tr.odd:hover, .myassets tr.even:hover {
+    background-color: LightSlateGray;
+    color: White;
+    text-shadow: 1px 1px 0 Black, 1px 1px 0 Black;
+    cursor: pointer;
+}
+.myassets td {
+    border: 1px solid Grey;
+    margin: 3px;
+    padding: 2px 5px;
+}
+.myassets td div {
+    margin: 3px;
+    padding: 2px 5px;
+    background-color: Black;
+}
+
+.myassets tr.even { background: #141414; }
+/*
+.myassets tr.alt td div { background-color: #141414; } 
+*/
+.myassets .notfound {
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 2px dotted Goldenrod;
+    color: White;
+    text-align: center;    
+}
+
+
+/* Asset Detail */
+.myassets dl {
+    display: inline-block;
+    width: 100%;
+  
+}
+.myassets dt {
+    display: inline-block;
+    float: left; clear: both;
+    width: 25%;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 0 Silver, 1px 1px 0 Black;
+    color: black;
+    font-weight: bolder;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/lightstone-sm.jpg);
+
+}
+.myassets dt:after {
+    content: ": ";
+}
+.myassets dt.preview {
+    width: 100%;
+    clear: both;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.myassets dd {
+    display: inline-block;
+    float: left;
+    padding: 5px;
+    margin: 0 0 10px 0;
+    width: 70%; 
+}
+.myassets dd.previewVID,
+.myassets dd.previewIMG,
+.myassets dd.previewU3D {
+    clear: both;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px; 
+    /*
+    background-color: rgba(0,0,0,0.0) !important;
+    */
+}
+.myassets dd.previewU3D,
+.myassets dd.previewU3D #unityPlayer {
+    text-align: center;
+    width: 100%;
+}
+.myassets dd.previewU3D #unityPlayer embed,
+.myassets dd.previewU3D #unityPlayer object {
+    margin-right: auto;
+    margin-left: auto;
+}
+.myassets dd:nth-of-type(even) {
+   background-color: #292929;
+}
+.myassets a.button {
+    display: block;
+    height: 28px;
+    width: 150px;
+    line-height: 28px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    vertical-align: middle;    
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/darkstone-sm.jpg);
+    background-color: black;
+    box-shadow: 0 0 25px Black;
+    text-shadow: 1px 1px 0px Black, 1px 1px 0px Black;
+}
+.myassets a.button:hover {
+    text-decoration: none;
+    color: Gold;
+    box-shadow: inset 0 0 25px Black, 0 0 25px Black;
+}
+
+.myassets #queueList {
+    font-size: .8em;
+}
+.myassets #queueList ul {
+    padding-left: 0;
+    margin-top: 0;
+}
+.myassets #queueList li {
+    text-transform: capitalize;
+    padding-right: 25px; 
+}
+.myassets #queueList #queueinfo {
+    font-size: .7em !important;
+    font-weight: bold;
+}
+
+.myassets #wkflStat {
+/*
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 0 25px Black;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-color: black;
+    font-size: .8em;
+    padding: 10px;
+    color: White;
+    font-weight: bold;
+    max-width: 500px;
+*/
+    text-align: center;
+    margin: auto;
+}
+
+.myassets #wkflStat ul {
+    margin: 15px 15px 25px 15px;
+    padding: 15px;
+    list-style: none;
+    background-color: Black;
+    border: 2px inset Silver;
+    text-align: left;
+}
+.myassets #wkflStat p {
+    text-align: left;
+    font-weight: bold;
+    margin: 0; padding: 0;
+}
+.myassets #wkflStat ul ul {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.myassets #wkflStat ul ul li {
+    padding: 5px;
+}
+.myassets #wkflStat ul ul li:nth-child(even) {
+    background-color: #191919;
+}
+
+.myassets #wkflStat .pass ul,
+.myassets #wkflStat .reject ul {
+    color: White;
+    font-size: .9em;
+    margin-left: 5px;
+    padding: 5px 15px;
+}
+.myassets #wkflStat .pass ul {
+    border-left: 2px solid Green;
+}
+.myassets #wkflStat .reject ul {
+    border-left: 2px solid Red;
+}
+.myassets #wkflStat .reject ul li {
+    cursor: pointer;
+}
+.myassets #wkflStat .reject ul li b {
+    color: Gold;
+    float: right;
+    font-size: .9em;
+    letter-spacing: 1px;
+}
+.myassets #wkflStat .reject ul li:hover b {
+    color: Yellow;
+}
+.myassets #wkflStat .reject ul li:hover {
+    background-color: Maroon;
+}
+.myassets #wkflStat .reject ul li.disable:hover {
+    background-color: transparent;
+    cursor: auto;
+}
+
+.myassets #wkflStat .pass {
+    color: Green;
+    margin-bottom: 10px;
+}
+.myassets #wkflStat .reject {
+    color: Red;
+}
+.myassets #wkflStat .reject a {
+    font-size: .6em;
+}
+
+
+.myassets #wkflStat hr {
+    margin: 0; padding: 0 0 5px 0;
+}
+
+.myassets u {
+    color: Gold;
+}
+.myassets u:hover {
+    color: Goldenrod;
+}
+
+#statText {
+    cursor: pointer;
+}
+#statText.statFail:after {
+    content:url(../images/cah/icon-warning.png);
+    position: absolute;
+    margin-left: 10px;
+/*
+    
+    display: inline-block;
+    color: Black;
+    font-weight: bolder;
+    height: 20px;
+    width: 20px;
+    background-color: Goldenrod;
+    border-radius: 50%;
+    text-align: center;
+*/
+}
+
+.myassets #ratebox {
+    position: absolute;
+    height: 120px;
+    width: 25%;
+    margin: 8px 0 0 0;
+    /*
+    background-color: Red;
+    */
+    overflow: hidden;
+}
+.myassets #ratebox .message {
+    color: White;
+    margin-top: 25px;
+    font-size: .8em;
+    font-weight: normal;
+    bottom: 0;
+    text-shadow: none;
+    text-align: center;
+}
+.myassets #ratebox .message b.Approved {
+    color: Green;
+}
+.myassets #ratebox .message b.Rejected {
+    color: Red;
+}
+
+.myassets #feedbackbox {
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-image: url(../images/cah/transparent-background.png);
+}
+.myassets #feedbackbox .inner {
+    position: absolute;
+    width: 50%;
+    margin: 35% 25%;
+    text-align:center;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow:  inset 0 0 25px Black;
+    border: 15px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 15 15 round;
+    background-image: url(../images/cah/darkstone-med.jpg);
+}
+.myassets #feedbackbox form {
+    padding: 5px 0;
+}
+.myassets #feedbackbox #judgement {
+    padding: 5px;
+    margin-bottom: 15px;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow:  0 0 25px Black;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+}
+.myassets #feedbackbox #judgement b {
+    letter-spacing: 3px;
+}
+
+.myassets #feedbackbox select {
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    width: 100%;
+    background-color: rgba(255,255,255,0.45);
+    color: black;
+    font-weight: bolder;
+    box-shadow: 0 0 25px Black;
+    margin-bottom: 15px;
+}
+.myassets #feedbackbox textarea {
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    width: 90%;
+    max-width: 90%;
+    height: 100px;
+    background-color: black;
+    color: White;
+    box-shadow: 0 0 25px Black;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+.myassets #feedbackbox input[type='submit'],
+.myassets #feedbackbox input[type='button'],
+#forgot button, #viewfeedback button {
+    line-height: 1.4em;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/darkstone-sm.jpg);
+    background-color: black;
+    box-shadow: 0 0 25px Black;
+    text-shadow: 1px 1px 1px Black, -1px -1px 1px Black;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-right: 20px;
+}
+#viewfeedback button {
+    float: right;
+}
+.myassets #feedbackbox input[type='submit']:hover,
+.myassets #feedbackbox input[type='button']:hover,
+#forgot button:hover, #viewfeedback button:hover {
+    color: Gold;
+    box-shadow: inset 0 0 25px Black, 0 0 25px Black;
+}
+.myassets #feedbackbox input[type='submit']:active,
+.myassets #feedbackbox input[type='button']:active,
+#forgot button:active, #viewfeedback button:active {
+    background-color: black;
+    background-image: none;
+    color: Goldenrod;
+}
+
+.myassets #feedbackbox,
+.myassets #viewfeedback {
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-image: url(../images/cah/transparent-background.png);
+}
+.myassets #feedbackbox .inner,
+.myassets #viewfeedback .inner {
+    position: absolute;
+    width: 50%;
+    margin: 35% 25%;
+    text-align:center;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow:  inset 0 0 25px Black;
+    border: 15px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 15 15 round;
+    background-image: url(../images/cah/darkstone-med.jpg);
+}
+.myassets #viewfeedback .inner {
+    width: 75%;
+    margin: 25% 12%;
+}
+.myassets #viewfeedback ul {
+    list-style: none;
+    margin: 10px;
+    padding: 0px;
+    text-align: left;
+}
+.myassets #viewfeedback .feedbackFrom {
+    display: inline-block;
+    background-color: #202020;
+    padding: 5px 10px;
+    width: 95%;
+    margin-bottom: 10px;
+}
+.myassets #viewfeedback .feedbackFrom b {
+    color: Grey;
+}
+.myassets #viewfeedback .feedbackFrom p {
+    margin: 0; padding: 0;
+    float: right;
+}
+.myassets #viewfeedback .feedbackQuick {
+    color: #ff6a6a;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: .8em;
+}
+.myassets #viewfeedback .feedbackMSG {
+    padding: 5px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+}
+.myassets #viewfeedback .feedbackMSG b {
+}
+.myassets #viewfeedback #fbContent {
+    display: inline-block;
+    box-shadow:  inset 0 0 25px Black;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-color: Black;
+    color: White;
+    margin-top: 15px;
+    width: 90%;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.myassets #description {
+    min-height: 125px;
+}
+
+.myassets #rejectBTN,
+.myassets #approveBTN {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 65px 25px 0px 25px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+}
+.myassets #approveBTN div,
+.myassets #rejectBTN div {
+    width: 100%;
+    height: 100%;
+}
+
+.myassets #approveBTN {
+    float: left;
+}
+.myassets #approveBTN div {
+    background-color: Lime;
+    background-image: url(../images/cah/button-approve.png);
+}
+.myassets #approveBTN:hover div {
+    box-shadow: inset 0 0 25px Lime;
+}
+.myassets #approveBTN:active div {
+    background-image: none;
+}
+
+.myassets #rejectBTN {
+    float: right;
+}
+.myassets #rejectBTN div {
+    background-color: Red;
+    background-image: url(../images/cah/button-reject.png);
+}
+.myassets #rejectBTN:hover div {
+    box-shadow: inset 0 0 25px Red;
+}
+.myassets #rejectBTN:active div {
+    background-image: none;
+}
+
+.myassets #approveBTN label,
+.myassets #rejectBTN label {
+    position: absolute;
+    top: 30px;
+
+    font-weight: bolder;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    color: White;
+}
+.myassets #approveBTN label {
+    left: 10px;
+}
+.myassets #rejectBTN label {
+    right: 20px;
+}
+
+/* end Asset Detail */
+
+
+.reviewer table {
+    width: 100%;
+    margin-top: 30px;
+    border: 2px solid Sienna;
+    border-spacing: 0px;
+    border-collapse: separate;
+    }
+
+.reviewer th {
+    padding: 0px 5px;
+    background: SlateGray;
+    border-top: 1px solid LightSlateGray;
+    border-left: 1px solid LightSlateGray;
+    border-right: 1px solid LightSlateGray;
+    border-bottom: 0px solid LightSlateGray;
+}
+
+.reviewer td {
+    padding: 10px;
+    border: 1px solid LightSlateGray;
+    }
+
+.reviewer tr.alt td { background: #eee; }  /*Move*/ 
+
+
+/* @end Globals - Tables
+-------------------------------- */
+
+
+/* @group Globals - Forms
+===================================== */
+#myassets .ajaxalt .disabled,
+.myassets .ajaxalt .disabled {
+    color: White;
+    background-color: #353535;
+    padding: 2px 5px;
+    border: 1px dotted Grey;
+}
+#myassets .ajaxalt,
+.myassets .ajaxalt {
+    padding: 5px 10px 0 10px; font-size: .8em; text-align: center;
+}
+
+
+#myassets .success,
+.myassets .success {
+    display: inline-block;
+    text-align: center;
+}
+#primary .success {
+    text-align: center;
+}
+
+#myassets .error, .myassets .error {
+    display: inline-block;
+    text-align: center;
+    background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; 
+}
+
+#primary .fail {
+    text-align: center;
+    background: #ff8080;
+    color: #800000;
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #ff0000;
+}
+
+
+#primary form {
+	padding: 2em;
+	overflow: hidden;
+	max-width: 504px; /*width of #primary in three column layout*/
+	}
+
+#primary #svSearchResults form {
+	max-width: 100%;
+}
+
+#primary fieldset {
+	border: none;
+	padding: 0;
+	}
+
+
+#primary legend {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	}
+
+#primary label {
+	padding-top: .5em;
+	line-height: 1;
+	color: #0c2846;
+	}
+
+.submit, .buttons input {
+	float: right;
+	height: 2em;
+	line-height: 2.1em;
+	border: none;
+	padding: 0 1em;
+	font-size: 1em;
+	font-weight: bold;
+	color: #fff;
+	background: #2e7aa7;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	text-align: center;
+	}
+
+/* @group Globals - Forms - Search
+===================================== */
+
+#searchForm {
+	position: absolute;
+	top: 8px;
+	right: 50px;
+	padding: 0;
+	margin: 0;
+	}
+
+#searchForm fieldset {
+	padding: 0;
+	border: 0;
+	}
+
+#searchForm input.text {
+	background-color: black;
+	border: 1px solid #888;
+	color: #888;
+	float: left;
+	width: 125px;
+	font-style: italic;
+	padding: 1px;
+	}
+
+#searchForm .submit {
+	float: right;
+	}
+
+/* @end Globals - Forms - Search
+-------------------------------- */
+
+
+/* @group Globals - Forms - Login
+===================================== */
+
+/* @group Globals - Forms - Login
+===================================== */
+
+.fancyborder {
+    padding: 10px;
+    border-radius: 25px;
+    border: 10px solid transparent;
+    border-image: url(../images/cah/engraving-sm.png) 10 10 round;
+}
+
+
+.fixcenter {
+	text-align: center;
+}
+#login {
+	position: relative;
+	display: inline-block;
+    border-radius: 5px;
+    border: 15px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 15 15 round;
+    box-shadow: inset 0 0 25px Black;
+    background-image: url(../images/cah/darkstone-med.jpg);
+    background-color: black;
+
+    min-width: 350px;    
+	max-width: 1000px;
+	padding: 5px;
+	/*
+	padding-bottom: 1em !important;
+	color: #FFF1D5;
+	*/
+	text-align: center;
+	}
+
+#primary #login h3, #login h3 {
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-size: 1.5em;
+	letter-spacing: 3px;
+	color: Black;
+	text-shadow: -1px -1px 1px Grey, 1px 1px 1px Silver;
+	margin: 0px;
+	padding: 0px 0px 10px 0px;
+	}
+#login ol {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	}
+#login li {
+	padding: 0px 0px 5px 0px;
+	}
+#login label {
+	display: none;
+	}
+#login label[for=cbRemember]
+{
+    display: block;
+	letter-spacing: 2px;
+    color: White;
+    font-weight: bold;
+    font-size: .9em;
+    text-shadow: -1px -1px 1px black, 1px 1px 1px black;
+}
+#login form {
+	padding: 0;
+	overflow: hidden;
+	max-width: 500px; /*width of #primary in three column layout*/
+	}
+#login .left {
+    width: 75%;
+    float: left;
+    }
+#login .buttons {
+    width: 25%;
+    float: right;
+    }
+#login input[type='text'], #login input[type='password'],
+#forgot input[type='text'] {
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-color: black;
+    width: 85%;
+    padding: 5px 0px 3px 10px;
+    color: Silver;
+    letter-spacing: 2px;
+}
+#forgot li {
+    margin-bottom: 10px;
+}
+#login input[type='checkbox'] {
+    /*
+    border-radius: 5px;
+    border: 3px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 3 3 round;
+    background-color: black;
+    */
+    color: White;
+    box-shadow: inset 0 0 15px Black, 1px 1px 2px Silver;
+
+}
+#login .submit {
+	line-height: 1.4em;
+	
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    background-image: url(../images/cah/darkstone-sm.jpg);
+    background-color: black;
+    box-shadow: 0 0 25px Black;
+    text-shadow: 1px 1px 1px Black, -1px -1px 1px Black;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    height: 75px;
+    width: 75px;
+	}
+#login .submit:hover {
+    color: Gold;
+    box-shadow: inset 0 0 25px Black, 0 0 25px Black;
+}
+#login .submit:active {
+    background-color: black;
+    background-image: none;
+    color: Goldenrod;
+}
+#svLoginContainer {
+    width: 385px;
+}
+#svLoginContainer input.text {
+	width: 99%;
+	}
+
+#svLoginContainer p.required {
+	float: none;
+	clear: both;
+	}
+
+#sendLogin fieldset {
+	margin-top: -.5em;
+	padding-top: .25em;
+	}
+
+/* @end Globals - Forms - Login
+-------------------------------- */
+
+.aside #login {
+	padding: 0;
+	}
+
+/* @end Globals - Forms - Login
+-------------------------------- */
+
+
+/* @group Globals - Forms - Comments
+===================================== */
+
+#svComments {
+	border-top: 2px solid #ccc;
+	margin-top: 3em;
+	padding-top: 2em;
+	}
+
+#svComments dl {
+	border-bottom: 1px dotted #ccc;
+	}
+
+
+
+/* @end Globals - Forms - Comments
+-------------------------------- */
+
+/* @end Globals - Forms
+-------------------------------- */
+
+/* @end GLOBALS
+-------------------------------- */
+
+
+
+/* @group HELPER CLASSES
+===================================== */
+
+.clearfix:after {
+	content: " "; /* Avoid extra space */
+	}
+
+/* @end HELPER CLASSES
+-------------------------------- */
+
+
+
+/* @group LAYOUT
+===================================== */
+#primary .stonebordersm {
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 5 round;
+}
+    
+#container {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	
+	}
+
+#content {
+	position: relative;
+	margin: 0px auto;
+	padding: 0px;
+	}
+
+#engrave {
+    position: relative;
+    margin:0px auto;
+    width: 950px;
+    padding: 25px 15px 0px 15px;
+    border-radius: 25px;
+    border: 30px solid transparent;
+    border-image: url(../images/cah/engraving.png) 30 30 round;
+
+}
+
+.home #content {
+	margin-top: 0;
+	min-width: 960px;
+	}
+
+#primary {
+	position: relative;
+	/*
+	color: #232323;
+	background-color: #fff1d5;
+	*/
+	color: #c0c0c0;
+	background-color: Black;
+	overflow: hidden;
+	min-height: 400px;
+	box-shadow: 10px 10px 20px black;
+	border-radius: 25px;
+	border: 30px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 30 30 round;
+ 	}
+#primary h3, #primary h4 {
+    width: 100%;
+    color: White;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+#primary #flareBG {
+	display: none;  
+}
+.home #primary h2 {
+	
+	}
+#primary h2 {
+	font-size: 1.5em;
+	margin-top: 0px;
+	}
+.home #primary {
+	width: 850px;
+	margin:0px auto;
+	padding: 0px 0px 10px 0px;
+	}
+.twoColSL #primary {
+	float: right;
+	width: 707px;
+	}
+
+.twoColSR #primary {
+	float: left;
+	width: 707px;
+	}
+
+.threeCol #primary {
+	width: 504px;
+	}
+
+.article,
+.aside {
+	min-height: 100px; /*Fixes odd no-content disappearing bug.*/
+	}
+
+#left {
+	float: left;
+	width: 167px;
+	margin-right: 26px;
+	padding: 30px 0;
+	}
+
+.home #left {
+	width: 687px;
+	padding: 0;
+	}
+
+#right {
+	float: right;
+	width: 156px;
+	margin: 13px 0 0;
+	padding: 16px 13px;
+	}
+
+.home #right {
+	width: 213px;
+	margin: -40px 0 0;
+	padding: 0;
+	}
+
+.threeColSR {
+	width: 167px;
+	}
+
+.aside {}
+#left.aside {}
+#right.aside {}
+
+
+/* @group Layout - Header
+===================================== */
+
+#header {
+	position: relative;
+	padding-top: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+	}
+#header #logoplate {
+	position: relative;
+	margin: 0 auto;
+	width: 985px;
+}
+
+#header h1 {
+	margin: 0px;
+	padding: 0px;
+	}
+
+#header h1 a {
+	display: block;
+	width: 320px;
+	height: 100px;
+	margin: 5px 0px;
+	text-indent: -9999px;
+	background: url(../images/cah/cah-logo.png) no-repeat;
+	}
+
+#header .navUtility {
+	position: absolute;
+	top: 10px;
+	right: 200px;
+	height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	/*
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	*/
+	}
+	
+#header .navUtility li {
+	border-left: 1px solid #959595;
+	}
+	
+#header .navUtility a {
+	color: white;
+	}
+#header .navUtility a:hover {
+	color: Gold;
+	}
+		
+.quickmenu {
+	position: relative;
+	display: block;
+	width: 100%;
+	background-color: rgba(0,0,0,.5);	
+	}
+#header .quickmenu {
+	height: 35px;
+	}
+.quickmenu {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);   
+    }
+#header .quickmenu .navUtility li strong {
+    color: #888;
+}
+/* @end Layout - Header
+-------------------------------- */
+
+
+/* @group Layout - Right
+===================================== */
+
+#right {
+	background: #f2f2f2;
+	}
+
+/* @end Layout - Right
+-------------------------------- */
+
+
+/* @group Layout - Footer
+===================================== */
+
+#footer {
+	position: relative;
+	clear: both;
+	border-collapse:collapse;
+    width: 100%;
+    min-width: 850px;
+    height: 76px;
+    margin: 0 auto;
+    padding: 25px 0px 0px 0px;
+
+
+	}
+	
+#footer .wrap {
+    margin: 0 auto;
+    width: 75%;    
+}
+	
+#footer #leftfoot {
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    height: 75px;
+    width: 75px;
+    background-image: url(../images/cah/engraving-left.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#footer #rightfoot {
+    position: absolute;
+    right: -15px;
+    bottom: 0;
+    height: 75px;
+    width: 75px;
+    background-image: url(../images/cah/engraving-right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+     
+}
+#footer table {
+	width: 100%;
+	padding: 0px;
+	margin: 0 0px 0 0px;
+	border-spacing: 0px;
+	border: none;
+	border-collapse: collapse;
+}
+#footer td {
+	border: none;
+	border-collapse: collapse;
+}
+#footer #scroll {
+	width: 850px;
+	min-width: 850px;
+	height: 76px;
+	padding: 0px 35px;
+
+}
+#footer #scrollLeft {
+
+}
+#footer #scrollRight {
+
+}
+
+#footer p {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	float: right;
+	font-size: .9em;
+	color: White;
+	right: 90px;
+	bottom: 45px;
+	font-weight: bold;
+	text-shadow: 1px 1px 5px Black;
+	/*
+    background-color: rgba(0,0,0,.5);
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 5px black;
+    */ 
+
+	}
+#footer #footermenu {
+	position: relative;
+}
+#footer .navUtility {
+	float: left;
+	position: absolute;
+	top: 0px;
+	height: 20px;
+	padding: 5px 10px;
+    background-color: rgba(0,0,0,.7);
+    box-shadow: 5px 5px 10px black;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+	}
+
+#footer .navUtility li {
+	padding: 0 5px 0 10px;
+	border-left: 3px inset Black;
+	}
+#footer .navUtility li.first {
+    padding: 0 5px 0 10px;
+    border-left: 0px;
+    }
+
+#footer .navUtility li a {
+	font-size: .8em !important;
+	color: White;
+	text-shadow: 0 0 10px Black;
+	}
+#footer .navUtility li a:hover {
+	color: Gold;
+	}
+
+/* @end Layout - Footer
+-------------------------------- */
+
+/* @end LAYOUT
+-------------------------------- */
+
+/* Cycle Styles */
+#homehero { margin-bottom: 25px; }
+#homehero .cycle-slideshow { margin: 0 auto; width: 840px; height: 175px; box-shadow: inset 5px 5px 5px Black; cursor: pointer; }
+#homehero .cycle-slideshow img { width: 840px; height: 175px; padding: 0px; }
+#homehero .cycle-overlay { 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 600; 
+    width: 820px;
+    background-color: rgba(0,0,0,.5);
+    font-size: .9em;
+    color: White;
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: .1em;
+    text-shadow: 1px 1px 5px Black;
+}
+#homehero .cycle-overlay div { 
+    width: 94%;
+}
+#homehero .cycle-overlay p { 
+    margin: 0; padding: 0 15px;
+    color: Silver;
+    font-weight: normal;
+    font-size: .8em;
+}
+#homehero .cycle-caption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 601;
+    padding: 15px;
+    color: White;
+    text-shadow: 1px 1px 5px Black;
+}
+#homehero .cycle-prev {
+    left: 0;
+    background: url(../images/cah/cycle-left.png) top left no-repeat;
+}
+#homehero .cycle-next {
+    right: 0;
+    background: url(../images/cah/cycle-right.png) top right no-repeat;;
+}
+#homehero .cycle-prev, #homehero .cycle-next {
+    position: absolute;
+    top: 0;
+    width: 75px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: 800;
+    height: 100%;
+    margin: 2px 5px;
+}
+#homehero .cycle-prev:hover, #homehero .cycle-next:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+/* END Cycle Styles */
+
+
+/* @group NAVIGATION/UI
+===================================== */
+
+/* @group Nav - Breadcrumb
+===================================== */
+
+#crumbList {
+	margin: 0 0 1.5em;
+	}
+
+#crumbList li {
+	font-size: 1.1em;
+	}
+
+#crumbList li a:hover {
+	text-decoration: underline;
+	}
+
+/* @end Nav - Breadcrumb
+-------------------------------- */
+
+/* @group Nav - Utility
+===================================== */
+
+.navUtility {
+	overflow: hidden;
+	margin: 0;
+	padding: 0px;
+	}
+
+.navUtility li {
+	display: inline;
+	margin: 0 .5em 0 -0.5em;
+	padding: 0 10px;
+	list-style: none;
+	font-size: 1em !important;
+	}
+
+
+/* @end Nav - Primary
+-------------------------------- */
+
+/* @group Nav - Primary
+===================================== */
+
+#navPrimary {
+	position: absolute;
+	top: 65px;
+	right: 0px;
+	height: 75px;
+	/*
+	overflow: hidden;
+	*/
+	margin: 0px 0px 0px 0px;
+	padding: 0px 15px 0px 0px;
+	list-style: none;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	}
+
+#navPrimary li {
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0;
+	list-style: none;
+	border-radius: 5px;
+    border: 3px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 5 round;
+	}
+
+#navPrimary li.first {
+	margin-left: 15px;
+	}
+
+#navPrimary a {
+	display: block;
+	padding: 0 15px;
+	line-height: 40px;
+	color: #fff;
+	text-decoration: none;
+	background-color: rgba(0,0,0,.5);
+	box-shadow: inset 5px 5px 5px Black;
+	}
+#navPrimary a:before {
+	}
+#navPrimary a:after {
+	}
+#navPrimary li a:hover, #navPrimary li.current a, #navPrimary li:hover, #navPrimary li.sfhover {
+	background-color: Black;
+    /*
+    border: 5px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 round;
+    */
+	}
+#navPrimary li a:hover, #navPrimary li:hover, #navPrimary li.sfhover {
+	background-color: Black;
+	}
+
+#navPrimary li.current a {
+	color: Goldenrod;
+}
+#navPrimary li:hover a, #navPrimary li li:hover a:hover, #navPrimary li.sfhover a:hover {
+	color: Gold;
+	}
+
+#navPrimary li li a:hover {
+	color: #fff;
+	text-decoration: underline;
+	}
+
+/* @group Nav - Primary - Dropdown
+===================================== */
+/* http://www.htmldog.com/articles/suckerfish/dropdowns/ */
+
+#navPrimary li ul { /* second-level lists */
+	position: absolute;
+	left: -9999px;
+	z-index: 10;
+	width: 12.5em;
+	top: 38px;
+	margin: 0;
+	padding-top: 0px;
+	padding-left: 0;
+	list-style: none;
+    border-radius: 5px;
+    background-color: black;
+    border: 3px solid transparent;
+    border-image: url(../images/cah/stoneborder.png) 5 5 5 round;
+    box-shadow: 0px 0px 25px Black;
+	}
+	
+#navPrimary li li a, #navPrimary li.current li a {
+    border-radius: 0px;
+    box-shadow: none;
+    background-color: Black;
+    color: Silver;
+    }
+
+#navPrimary li li a:hover, #navPrimary li.current li a, #navPrimary li li:hover, #navPrimary li li.sfhover, #navPrimary li:hover li a {
+    border-radius: 0px;
+    box-shadow: none;
+    color: Silver;
+    }
+
+#navPrimary li li { /* all list items */
+	float: left;
+	width: 12em; /* width needed for Opera */
+	margin: 0 !important;
+	border-radius: 0px;
+    border-image: none;
+    background-color: Black;
+    border-top: 1px solid #242424;
+	}
+
+#navPrimary li li a {
+	display: block;
+	padding: .5em;
+	line-height: 1;
+	text-transform: none;
+	text-align: center;
+	}
+
+#navPrimary ul li.first,
+#navPrimary ul li li.first { /* all list items */
+	border: 0;
+	}
+
+#navPrimary li ul ul { /* third-and-above-level lists */
+	margin: -1.95em 0 0 12em;
+	}
+
+#navPrimary li:hover ul ul,
+#navPrimary li:hover ul ul ul,
+#navPrimary li.sfhover ul ul,
+#navPrimary li.sfhover ul ul ul {
+	left: -9999px;
+		z-index: 1001;
+	}
+
+#navPrimary li:hover ul,
+#navPrimary li li:hover ul,
+#navPrimary li li li:hover ul,
+#navPrimary li.sfhover ul,
+#navPrimary li li.sfhover ul,
+#navPrimary li li li.sfhover ul { /* lists nested under hovered list items */
+	left: auto;
+	top: 0xp;
+	}
+	
+
+/* @end Nav - Primary - Dropdown
+-------------------------------- */
+
+
+
+/* @end Nav - Primary
+-------------------------------- */
+
+
+
+
+
+/* @group Nav - Secondary
+===================================== */
+
+.navSecondary {
+	margin: 0 0 4em;
+	padding: 0;
+	list-style: none;
+	height: auto;
+	}
+
+.navSecondary li {
+	margin: 0 0 .5em;
+	padding: 0 0 .5em;
+	border-bottom: 1px solid #d6d6d6;
+	line-height: 1.2;
+	}
+
+.navSecondary .last {
+	border: 0;
+	padding-bottom: 0;
+	}
+
+.navSecondary li ul {
+	margin: .5em 0 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	}
+
+.navSecondary li {
+	margin-bottom: .5em;
+	}
+
+.navSecondary li a {
+	display: block;
+	}
+.navSecondary li a:hover {
+	}
+
+.navSecondary li.current a {
+	font-weight: bold;
+	color: #ff3405;
+	}
+
+
+/* @group Nav - Secondary - Second Level
+===================================== */
+
+.navSecondary li.current ul {
+	}
+
+.navSecondary li li {
+	margin: 0 0 .5em 1em;
+	padding: 0;
+	border-bottom: none;
+	list-style: none;
+	line-height: 1.2em;
+	}
+
+.navSecondary li.current li a {
+	font-weight: normal;
+	color: #434343;
+	}
+
+/* @end Nav - Secondary - Second Level
+-------------------------------- */
+
+/* @end Nav - Secondary
+-------------------------------- */
+
+
+/* @group Nav - More Results
+===================================== */
+
+.moreResults {
+	border-top: 2px solid #e6e6e6;
+	padding-top: 1.5em;
+}
+
+/*.moreResults dt {
+	float: left;
+	margin-right: .5em;
+	}*/
+
+.moreResults ul {
+	/*float: right;*/
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	}
+
+.moreResults li {
+	display: inline;
+	padding: 0 .25em;
+	list-style: none;
+	border-right: 1px solid #b6b6b6;
+	}
+	
+.moreResults li.resultsFound {
+	padding-right: .5em;
+}
+	
+.moreResults li.navNext {
+	border-right: 0;
+	}
+	
+.moreResults li.navPrev {
+	border-right: 0;
+	}
+
+.moreResults li a {
+	padding: 0;
+	}
+
+/* @end Nav - More Results
+-------------------------------- */
+
+/* @end NAVIGATION/UI
+-------------------------------- */
+
+
+
+/* @group MODULES
+===================================== */
+
+/* @group Galleries
+===================================== */
+
+#svGallery {
+	border-top: 2px solid #e6e6e6;
+	padding-top: 1.8em;
+}
+
+#svGallery li a {
+	border: 0px solid #ccc; /* Add the the total number of pixels added by borders and padding here to includes/display_objects/gallery/htmlhead/gallery.cfm */
+	}
+
+
+/* @end
+-------------------------------- */
+
+/* @group Calendar
+===================================== */
+
+.svCalendar table {
+	margin-top: 0;
+	}
+
+.svCalendar th {
+	background: #0c2846;
+	vertical-align: middle;
+	color: #fff;
+	}
+
+.svCalendar th a, .svCalendar th a:hover {
+	background: #0c2846;
+	color: #fff;
+	}
+
+.svCalendar th a:hover {
+	color: #2e7aa7;
+	}
+
+
+.svCalendar tr.dayofweek td {
+	background: #2e7aa7;
+	color: #fff;
+	font-weight: normal;
+	}
+
+.svCalendar th,
+.svCalendar td {
+	border: 1px solid #fff;
+	}
+
+.svCalendar td {
+		background: #e9f3f7;
+	}
+
+#svCalendarNav td {
+	vertical-align: middle;
+}
+	
+#svCalendarNav td a {
+	display: block;
+	margin-bottom: 1px;
+	padding: 3px 4px;
+	background: #ff3405;
+	color: #fff;
+}
+
+#svCalendarNav td a:hover {
+	background: #0c2846;
+	text-decoration: none;
+}
+
+
+/* @end Calendar
+-------------------------------- */
+
+/* @group Dragable Feeds */
+
+#svRSSFeeds form {
+	background: transparent;
+	}
+
+li.boxItemHeader { /* Link of items inside dragable boxes */
+	color: #2e7aa7;
+	padding-left: 10px;
+	background: url(../images/pointer_red_sm.gif) no-repeat left .25em;
+	}
+
+a.boxItemHeader { /* Link of items inside dragable boxes */
+	color: #2e7aa7;
+	}
+
+#svAddNewFeed {
+	padding: 0 !important;
+	background: transparent !important;
+	}
+
+#svAddNewFeed button { /* !important used to override dragable_feeds.css */
+	background: #2e7aa7 !important;
+	font-size: 11px !important;
+	}
+
+/* @end */
+
+
+
+/* @group Features
+===================================== */
+
+#features {
+	overflow: hidden;
+	}
+
+#features dl {
+	float: left;
+	clear: none;
+	width: 213px;
+	margin: 0 16px 0 0;
+	}
+
+#features dt {
+	font-size: 2em;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+	}
+
+#features dt a {
+	color: #232323;
+	}
+
+#features dt a:hover {
+	text-decoration: none;
+	}
+
+#features dd {
+	font-size: 1.1em;
+	}
+
+#features dd p {
+	margin: -3px 0 8px;
+	line-height: 15px;
+	}
+
+#features dd a {
+	font-weight: bold;
+	}
+
+#features dd.image {
+	float: none;
+	margin: 0 0 1.7em;
+	position: relative;
+	}
+
+#features dd.image img {
+	/* recommended size: */
+	/*width: 213px;*/
+	/*height: 120px;*/
+	}
+
+
+/* @end Features
+-------------------------------- */
+
+
+/* @group Home Feeds
+===================================== */
+
+.home .aside .svIndex h3 {
+	display: block;
+	padding: 0 1em;
+	margin-bottom: 1em;
+	line-height: 40px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	color: #fff;
+	background: #ff3405;
+	}
+
+.home .aside .svIndex dl {
+	margin: 0 1.5em 1em;
+	padding: 0 0 .5em;
+	border-bottom: 1px solid #d6d6d6;
+	}
+
+.home .aside .svIndex dl.last, .home .aside .svIndex dl:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+	}
+
+.home .aside .svIndex dt {
+	margin: 0 0 .5em;
+	padding: 0;
+	font-size: 1.3em;
+	font-weight: normal;
+	line-height: 1.3;
+	}
+
+.home .aside .svIndex dt.releaseDate {
+	margin: 0 0 3px;
+	font-size: 1em;
+	text-transform: uppercase;
+	color: #979797;
+	}
+
+.home .aside .svIndex dd {
+	margin: 0 1em 0.25em 0;
+	padding: 0;
+	font-size: 1.1em;
+	color: #434343;
+	}
+
+.home .aside .svIndex dd.summary {
+	margin: 0 0 .5em;
+	}
+
+/*.home .aside .credits,
+.home .aside .tags,
+.home .aside .ratings,
+.home .aside .credits {
+	color: #999 !important;
+	}*/
+
+.home .aside .svIndex dl.hasImage .image {
+	margin: 0 .5em 0em 0;
+	}
+
+.home .aside .svIndex dl.hasImage .image img {
+	width: 50px;
+	}
+
+.home .aside .svIndex dd p {
+	margin: 0;
+	padding: 0;
+	line-height: inherit;
+	}
+
+.home .aside .svIndex span.readMore a {
+	display: none;
+	}
+
+/* @end Home Promo Feeds
+-------------------------------- */
+
+/* @group Indexes
+===================================== */
+#svFolderCallout dl {
+    padding-bottom: 1.3em;
+    margin: 1em 0;
+}
+#svFolderCallout dd.image {
+    min-width: 100px;
+    min-height: 100px;
+}
+#svFolderCallout dd.image img {
+    padding: 5px 15px 5px 0px;
+}
+#svFolderCallout dt.title {
+    margin-left: 100px;
+}
+#svFolderCallout dd.summary {
+    margin-left: 105px;
+    font-size: .9em;
+}
+
+#svFolderIssue dl {
+    border: none;
+    padding: .5em 0;
+    margin: .5em 0 0 0;
+}
+#svFolderIssue dt {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+#svFolderIssue dd.summary {
+    font-size: .7em;
+    padding: 0;
+    margin: 0 0 0 25px;
+}
+#svFolderIssue dd.summary p {
+    margin: 5px 0 0 0;
+}
+
+
+
+.aside .svIndex {
+	margin-top: 0;
+}
+.svIndex dl {
+	padding-bottom: 1em;
+	border-bottom: 1px solid Silver;
+	}
+
+.aside .svIndex dl {
+	margin: .5em 0;
+	padding: .5em 0 .5em;
+	}
+
+.svIndex dl.hasImage {
+		/*padding-left: 90px;
+		min-height: 90px; Both set dynamically in dsp_feed.cfm & dsp_portal.cfm*/
+		position: relative;
+		}
+
+.aside .svIndex dl.hasImage {
+	min-height: 0;
+	padding-left: 0;
+	}
+
+.svIndex dl.hasImage .image {
+		float: none;
+		}
+
+.aside .svIndex dl.hasImage .image {
+	display: none;
+	}
+
+.article .svIndex {
+	margin-top: 2em;
+	}
+
+.article .svIndex dt {
+	font-size: 1.6em;
+	margin-bottom: .5em;
+	}
+
+.svIndex dt.releaseDate {
+	text-transform: uppercase;
+	color: #777;
+	margin-bottom: .5em;
+	font-size: 1em !important;
+	}
+
+.svIndex dd {
+	line-height: 1.2;
+	}
+
+.aside .svIndex dd {
+	margin: 0 1em .25em 0;
+	}
+	
+.svIndex dd.image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	}
+
+/* @group Ratings */
+
+.article .svIndex dd.credits,
+.article .svIndex  dd.comments,
+.article .svIndex  dd.tags,
+.article .svIndex  dd.rating {
+	line-height: 20px; /* acommodate height of stars */
+	}
+
+div.stars a {
+	width: 14px;
+	height: 13px;
+	background: transparent url(../images/rater/stars.png) no-repeat;
+}
+
+.zero { background-image: url(../images/rater/star_zero.png); }
+.one { background-image: url(../images/rater/star_one.png); }
+.onehalf { background-image: url(../images/rater/star_onehalf.png); }
+.two { background-image: url(../images/rater/star_two.png); }
+.twohalf { background-image: url(../images/rater/star_twohalf.png); }
+.three { background-image: url(../images/rater/star_three.png); }
+.threehalf { background-image: url(../images/rater/star_threehalf.png); }
+.four { background-image: url(../images/rater/star_four.png); }
+.fourhalf { background-image: url(../images/rater/star_fourhalf.png); }
+.five { background-image: url(../images/rater/star_five.png); }
+
+/* @end */
+
+/* @group Slideshow
+===================================== */
+.svSlides dl {
+	border: 0;
+	margin: 0;
+	}
+	
+.svSlides dl.hasImage { /* padding-left & min-height set dynamically in /display_ojects/feedslideshow/htmlhead/slideshow.jquery.cfm */	position: relative;
+	}
+	
+.home .svSlideshow {
+	position: relative;
+	width: 627px;
+	overflow: hidden;
+	padding: 30px 30px 10px;
+	margin: 0 0 2.2em;
+	color: #b4dffa;
+	background: #102e50 url(../images/bg-hero.jpg) no-repeat !important;
+	border: 0;
+	}
+
+.home .svSlides {
+	position: relative;
+	border: 0;
+	z-index: 1;
+	padding: 0;
+	margin: 0 !important;
+	/* min-height set dynamically in /display_ojects/feedslideshow/htmlhead/slideshow.jquery.cfm */
+	}
+
+.home .svSlides dl {
+	/* Height set dynamically in /display_ojects/feedslideshow/htmlhead/slideshow.jquery.cfm */
+	/*position is set by jquery.slidshow plugin */
+	width: auto !important;
+	padding-bottom: 0;
+	margin-right: 0;
+	border: 0;
+	font-size: 1em;
+	background: transparent !important; /*for IE 6/7*/
+	}
+
+.home .svSlides dt {
+	margin-bottom: .35em !important;
+	font-size: 2.6em !important;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+	line-height: 1;
+	color: #fff;
+	}
+
+.home .svSlides dt.releaseDate {
+	color: #abdffa;
+	font-size: 11px !important;
+	font-weight: normal;
+	margin-bottom: .5em !important;
+	}
+
+.home .svSlides dt a {
+	color: #fff;
+	}
+
+.home .svSlides dd {
+	margin-bottom: 1.1em;
+	letter-spacing: -0.025em;
+	font-size: 12px !important;
+	line-height: 1.2em;
+	padding: 0;
+	}
+
+.home .svSlides dd.image { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	float: none;
+	padding: 0;
+	border: 3px solid #1c5981;
+	}
+
+.home .svSlides dd.image img {
+	display: block;
+	}
+	
+.home .svSlides dd.credits {
+	font-size: 11px !important;
+	color: #fff;
+	}
+	
+.home .svSlides dd.tags {
+	margin-left: 1em;
+	font-size: 11px !important;
+	}
+
+.home .svSlides .readMore {
+	position: absolute;
+	bottom: 0px;
+	}
+
+.home .svSlides .readMore a {
+	font-size: 11px !important;
+	font-weight: bold;
+	color: #fff;
+	height: 2.1em;
+	line-height: 2.1em;
+	border: none;
+	padding: 0 1em;
+	display: block;
+	width: 60px;
+	text-align: left;
+	padding-right: 22px;
+	margin-top: .75em;
+	background: #2e7aa7 url(../images/arrows_white.gif) no-repeat 6.8em 50%;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	}
+
+.svPager {
+	text-align: center;
+	line-height: 2;
+	}
+
+.home ol.svPager { /* width set dynamically in /display_ojects/feedslideshow/htmlhead/slideshow.jquery.cfm */
+	/* width: #pagerWidth#; */
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	margin: 10px 0;
+	padding: 0;
+	list-style: none;
+	}
+
+ol.svPager li {
+
+	}
+
+ol.svPager a {
+	color: #fff;
+	background: #0c243a;
+	outline: none;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	}
+
+ol.svPager li.activeLI a,
+ol.svPager a:hover {
+	background: #ff3405;
+		text-decoration: none;
+	}
+
+
+
+/* @end Slideshow
+-------------------------------- */
+
+/* @end Indexes
+-------------------------------- */
+
+
+/* @group Session Tools
+===================================== */
+
+#svSessionTools p#welcome {
+	font-weight: bold;
+	color: Goldenrod;
+	text-align: center;
+	margin-top: 50px;
+	}
+
+/* @end Session Tools
+-------------------------------- */
+
+
+/* @group User Tools - Categories
+===================================== */
+
+#svCategories li {
+	margin: 0;
+	padding: 0;
+	}
+
+#svCategories li a {
+	margin: 0;
+	padding: 0;
+	}
+
+/* @end User Tools - Categories
+-------------------------------- */
+
+
+/* @group User Tools - Favorites
+===================================== */
+
+#favoriteList li {
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+	}
+
+#favoriteList li a {
+	margin: 0;
+	padding: 0;
+	}
+
+/* @end User Tools - Favorites
+-------------------------------- */
+
+/* @Data Responses
+-------------------------------- */
+#myassets .dataResponses dl,
+#submissions .dataResponses dl {
+    display: inline-block;
+    width: 100%;
+  
+}
+#myassets .dataResponses dt,
+#submissions .dataResponses dt {
+    display: inline-block;
+    float: left; clear: both;
+    font-weight: bold;
+    width: 25%;
+    letter-spacing: 2px;
+    color: #FFF1D5;
+    background-color: Sienna;
+    margin-right: 10px;
+    padding: 5px;
+}
+#myassets .dataResponses dt:after,
+#submissions .dataResponses dt:after {
+    content: ": ";
+}
+#myassets .dataResponses dt.preview,
+#submissions .dataResponses dt.preview {
+    width: 100%;
+    clear: both;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+#myassets .dataResponses dd,
+#submissions .dataResponses dd {
+    display: inline-block;
+    float: left;
+    padding: 5px;
+    margin: 0 0 10px 0;
+    width: 70%; 
+}
+#myassets .dataResponses dd.previewVID,
+#myassets .dataResponses dd.previewIMG,
+#myassets .dataResponses dd.previewU3D,
+#submissions .dataResponses dd.previewVID,
+#submissions .dataResponses dd.previewIMG,
+#submissions .dataResponses dd.previewU3D {
+    clear: both;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px; 
+    background-color: rgba(0,0,0,0.0) !important;
+}
+#myassets .dataResponses dd.previewU3D,
+#myassets .dataResponses dd.previewU3D #unityPlayer
+#submissions .dataResponses dd.previewU3D,
+#submissions .dataResponses dd.previewU3D #unityPlayer {
+    text-align: center;
+    width: 100%;
+}
+#myassets .dataResponses dd.previewU3D #unityPlayer embed,
+#submissions .dataResponses dd.previewU3D #unityPlayer embed,
+#myassets .dataResponses dd.previewU3D #unityPlayer object,
+#submissions .dataResponses dd.previewU3D #unityPlayer object {
+    margin-right: auto;
+    margin-left: auto;
+}
+#myassets .dataResponses dd:nth-of-type(even),
+#submissions .dataResponses dd:nth-of-type(even) {
+   background-color: rgba(0,0,0,0.1);
+}
+#myassets .dataResponses a.button,
+#submissions .dataResponses a.button {
+    display: block;
+    height: 28px;
+    width: 150px;
+    line-height: 28px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    vertical-align: middle;    
+    background-color: Sienna;
+    border: 1px solid Brown;
+    border-radius: 25px;
+}
+#myassets .dataResponses a.button:hover,
+#submissions .dataResponses a.button:hover {
+    background-color: Brown;
+    border: 1px solid Brown;
+    color: Yellow;
+    text-decoration: none;
+}
+
+/* @end Data Responses
+-------------------------------- */
+
+
+/* @end MODULES
+-------------------------------- */
+
+
+/* EOF */
