@@ -1,0 +1,43 @@
+CREATE SCHEMA `cah` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+
+CREATE TABLE `asset` (
+  `uuid` char(36)  NOT NULL,
+  `title` varchar(255) NULL,
+  `description` text,
+  `type` varchar(255) NULL,
+  `callout` char(36) NULL,
+  `package` text,
+  `submitter` char(36) NULL,
+  `created` datetime NULL,
+  `final_status` char(8) NULL,
+  `convert_status` bit(1) NOT NULL DEFAULT b'0',
+  `viewer` char(36) NULL,
+  PRIMARY KEY (`uuid`),
+  UNIQUE KEY `uuid_UNIQUE` (`uuid`)
+) ENGINE=InnoDB
+;
+
+CREATE TABLE `feedback` (
+  `id` char(36) NOT NULL,
+  `assetid` char(36) NULL,
+  `statusid` char(36) NULL,
+  `created` datetime NULL,
+  `message` text,
+  `commenter` char(36) NULL,
+  `quickmessage` char(36) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+;
+
+CREATE TABLE `approval` (
+  `assetid` char(36) NOT NULL,
+  `approver` char(36) NULL,
+  `reviewtype` varchar(50) NULL,
+  `created` datetime NULL,
+  `bounty` decimal(15,2) NULL,
+  `status_title` varchar(50) NULL,
+  `id` char(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB
+;
