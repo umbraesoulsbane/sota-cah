@@ -72,7 +72,7 @@ to your own modified versions of Mura CMS.
 			throwonerror="no">
 
 		<cfhttpparam name="X-Signature" type="header" 	value="#Trim(ListGetAt(sigX, 2, "="))#" encoded="no">
-		<cfhttpparam 					type="body" 	value="#authStr#" encoded="no">
+		<cfhttpparam 					type="body" 	value="#payload#" encoded="no">
 
 	</cfhttp>
 
