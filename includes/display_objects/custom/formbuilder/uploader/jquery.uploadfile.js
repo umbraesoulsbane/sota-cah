@@ -7,7 +7,7 @@
  */
 (function ($) {
     if ($.fn.ajaxForm == undefined) {
-        $.getScript("http://malsup.github.io/jquery.form.js");
+        $.getScript("//malsup.github.io/jquery.form.js");
     }
     var feature = {};
     feature.fileapi = $("<input type='file'/>").get(0).files !== undefined;
