@@ -456,7 +456,9 @@ to your own modified versions of Mura CMS.
 <cffunction name="getStatus" output="no" returntype="struct">
 	<cfargument name="assetid" type="string" required="true" default="-1"/>
 
+<!---
 	<cftry>
+--->
 		<cfquery datasource="cah" name="getStatus">
 		SELECT a.*, b.final_status  FROM cah.approval a, cah.asset b 
 		WHERE 	a.assetid = b.uuid AND
@@ -469,8 +471,10 @@ to your own modified versions of Mura CMS.
 		WHERE 	uuid = '#arguments.assetid#'
 		</cfquery>
 
+<!---
 		<cfcatch><cfset getStatus = QueryNew("none") /><cfset getConvert = QueryNew("convert_status") /></cfcatch>		
 	</cftry>
+--->
 
 	<cfset outStruct = StructNew() />
 	<cfif getConvert.convert_status eq 0 >
@@ -578,7 +582,9 @@ to your own modified versions of Mura CMS.
 	<cfargument name="statusid" type="string" required="false" default=""/>
 	<cfargument name="assetid" type="string" required="false" default=""/>
 	
+<!---
 	<cftry>
+--->
 		<cfquery datasource="cah" name="getFeedback">
 		SELECT * FROM feedback 
 		WHERE 	
@@ -592,18 +598,22 @@ to your own modified versions of Mura CMS.
 		ORDER BY created DESC, assetid 
 		</cfquery>
 
-		<!--- id,assetid,statusid,created,message,commenter,quickmessage --->		
+		<!--- id,assetid,statusid,created,message,commenter,quickmessage --->
+<!---
 		<cfcatch><cfset getFeedback = QueryNew("none") /></cfcatch>		
 	</cftry>
-	
+--->
+
 	<cfreturn getFeedback />
 </cffunction>
 
 <cffunction name="getAssetList" output="no" returntype="query">
 	<cfargument name="type" type="string" required="true" default="NA"/>
 	<cfargument name="filter" type="string" required="false" default=""/>
-	
+
+<!---
 	<cftry>
+--->
 		<cfquery datasource="cah" name="qryAssets">
 
 		<cfif arguments.type eq "user" >
@@ -651,9 +661,10 @@ to your own modified versions of Mura CMS.
 		
 		</cfquery>
 
+<!---
 		<cfcatch><cfrethrow><cfset qryAssets = QueryNew("none") /></cfcatch>		
 	</cftry>
-	
+--->
 	<cfreturn qryAssets />
 </cffunction>
 
