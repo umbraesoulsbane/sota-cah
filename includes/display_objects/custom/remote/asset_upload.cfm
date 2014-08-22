@@ -7,43 +7,47 @@
 	<cfset rtn.url 		= "" />
 	
 <cftry>
-	<!--- simple test for form existance --->
-	<cfif StructIsEmpty(form) or NOT StructKeyExists(form,"assetid") >
-		<cfset rtn.err 		= true />
-		<cfset rtn.errMsg 	= "Form data not available." />
-	<cfelse>
-		<!--- upload process --->
-		<cftry>
-			<cfset $ = application.serviceFactory.getBean('$').init(url.siteid) />
+	<!--- upload process --->
+	<cftry>
+		<cfset $ = application.serviceFactory.getBean('$').init(url.siteid) />
 		
-			<cfset rawPath = "/assets/uploads/" />
-			<cffile action="upload" filefield="file" destination="#ExpandPath($.siteConfig('assetPath') & rawPath)#" nameconflict="overwrite" />
+		<cfif $.siteConfig('assetdir') contains "/#$.siteConfig('siteid')#" >
+			<cfset writePath = $.siteConfig('assetdir') />
+		<cfelse>
+			<cfset writePath = $.siteConfig('assetdir') & "/" & $.siteConfig('siteid') />
+		</cfif>
+		<cfif $.siteConfig('assetPath') contains "/#$.siteConfig('siteid')#" >
+			<cfset readPath = $.siteConfig('assetPath') />
+		<cfelse>
+			<cfset readPath = $.siteConfig('assetPath') & "/" & $.siteConfig('siteid') />
+		</cfif>
+		
+		<cfset rawPath = "/assets/uploads/" />
+		<cffile action="upload" filefield="file" destination="#ExpandPath(writePath & rawPath)#" nameconflict="overwrite" />
 				
-			<cfset rawFile = form.assetid & "." & cffile.serverFileExt />
+		<cfset rawFile = form.assetid & "." & cffile.serverFileExt />
 				
-			<cfif cgi.https eq "on">
-				<cfset rawProto = "https://" />
-			<cfelse>
-				<cfset rawProto = "http://" />
-			</cfif>
+		<cfif cgi.https eq "on">
+			<cfset rawProto = "https://" />
+		<cfelse>
+			<cfset rawProto = "http://" />
+		</cfif>
 		
-			<cffile action="rename" 
-					source="#ExpandPath($.siteConfig('assetPath') & rawPath & cffile.serverFile)#" 
-					destination="#ExpandPath($.siteConfig('assetPath') & rawPath & rawFile)#" />
+		<cffile action="rename" 
+				source="#ExpandPath(writePath & rawPath & cffile.serverFile)#" 
+				destination="#ExpandPath(writePath & rawPath & rawFile)#" />
 		
-			<cfset rawURL = rawProto & $.siteConfig('domain') & $.siteConfig('assetPath') & rawPath & rawFile />
+		<cfset rawURL = rawProto & $.siteConfig('domain') & readPath & rawPath & rawFile />
 
-			<cfcatch type="any">
-				<cfset rtn.err 		= true />
-				<cfset rtn.errMsg 	= "Problem uploading file. (#cfcatch.message#)" />
-		  	</cfcatch>
-		</cftry>
-
-	</cfif>
+		<cfcatch type="any">
+			<cfset rtn.err 		= true />
+			<cfset rtn.errMsg 	= "Problem uploading file. (#Replace(cfcatch.message,$.siteConfig('assetdir'),"CENSOR","ALL")#)" />
+	  	</cfcatch>
+	</cftry>
 
 	<cfcatch type="any">
 		<cfset rtn.err 		= true />
-		<cfset rtn.errMsg 	= "Form data not available. (#cfcatch.message#)" />
+		<cfset rtn.errMsg 	= "Critical Error. (#Replace(cfcatch.message,$.siteConfig('assetdir'),"CENSOR","ALL")#)" />
   	</cfcatch>
 </cftry>
 
