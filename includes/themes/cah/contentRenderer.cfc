@@ -456,31 +456,27 @@ to your own modified versions of Mura CMS.
 <cffunction name="getStatus" output="no" returntype="struct">
 	<cfargument name="assetid" type="string" required="true" default="-1"/>
 
-<!---
 	<cftry>
---->
 		<cfquery datasource="cah" name="getStatus">
-		SELECT a.*, b.final_status  FROM cah.approval a, cah.asset b 
+		SELECT a.*, b.final_status  FROM approval a, asset b 
 		WHERE 	a.assetid = b.uuid AND
 				a.assetid = '#arguments.assetid#'
 		ORDER BY a.created DESC
 		</cfquery>
 		
 		<cfquery datasource="cah" name="getConvert">
-		SELECT *  FROM cah.asset 
+		SELECT *  FROM asset 
 		WHERE 	uuid = '#arguments.assetid#'
 		</cfquery>
 
-<!---
 		<cfcatch><cfset getStatus = QueryNew("none") /><cfset getConvert = QueryNew("convert_status") /></cfcatch>		
 	</cftry>
---->
 
 	<cfset outStruct = StructNew() />
 	<cfif getConvert.convert_status eq 0 >
 		<cfif $.getConvert(arguments.assetid).status eq "review">
 			<cfquery datasource="cah" name="getStatus">
-			UPDATE cah.asset 
+			UPDATE asset 
 			SET 	convert_status = 1
 			WHERE 	uuid = '#arguments.assetid#'
 			</cfquery>
@@ -566,7 +562,7 @@ to your own modified versions of Mura CMS.
 		
 		<cfif outStruct.statuscode neq getStatus.final_status and outStruct.statuscode does not contain "open" >
 			<cfquery datasource="cah" name="getStatus">
-			UPDATE cah.asset 
+			UPDATE asset 
 				SET final_status = "#LCase(outStruct.statuscode)#"
 			WHERE 	uuid = '#arguments.assetid#'
 			</cfquery>
@@ -582,9 +578,7 @@ to your own modified versions of Mura CMS.
 	<cfargument name="statusid" type="string" required="false" default=""/>
 	<cfargument name="assetid" type="string" required="false" default=""/>
 	
-<!---
 	<cftry>
---->
 		<cfquery datasource="cah" name="getFeedback">
 		SELECT * FROM feedback 
 		WHERE 	
@@ -599,10 +593,8 @@ to your own modified versions of Mura CMS.
 		</cfquery>
 
 		<!--- id,assetid,statusid,created,message,commenter,quickmessage --->
-<!---
 		<cfcatch><cfset getFeedback = QueryNew("none") /></cfcatch>		
 	</cftry>
---->
 
 	<cfreturn getFeedback />
 </cffunction>
@@ -611,60 +603,55 @@ to your own modified versions of Mura CMS.
 	<cfargument name="type" type="string" required="true" default="NA"/>
 	<cfargument name="filter" type="string" required="false" default=""/>
 
-<!---
 	<cftry>
---->
 		<cfquery datasource="cah" name="qryAssets">
-
 		<cfif arguments.type eq "user" >
-			SELECT * FROM cah.asset 
+			SELECT * FROM asset 
 			WHERE 	submitter = '#arguments.filter#'
 		<cfelseif arguments.type eq "open" >
 			SELECT 	*
-			FROM	cah.asset 
+			FROM	asset 
 			WHERE	(final_status IS NULL or
 					final_status = '')
 					and convert_status = 1
 		<cfelseif arguments.type eq "rejected" >
 			SELECT 	*
-			FROM	cah.asset 
+			FROM	asset 
 			WHERE	final_status = 'rejected'
 		<cfelseif arguments.type eq "accepted" >
 			SELECT 	*
-			FROM	cah.asset 
+			FROM	asset 
 			WHERE	final_status = 'accepted'
 		<cfelseif arguments.type eq "all" >
-			SELECT * FROM cah.asset 
+			SELECT * FROM asset 
 			WHERE 	convert_status = 1
 		<cfelseif arguments.type eq "unconverted" >
-			SELECT * FROM cah.asset 
+			SELECT * FROM asset 
 			WHERE 	convert_status = 0
 		<cfelse>
-			SELECT a.* FROM cah.asset a LEFT JOIN cah.approval b ON a.uuid = b.assetid
+			SELECT a.* FROM asset a LEFT JOIN approval b ON a.uuid = b.assetid
 			WHERE	(	a.final_status IS NULL or
 						a.final_status = '') AND 
 					a.submitter <> '#session.mura.userid#' 
 					and convert_status = 1
 				<cfif $.currentUser().isInGroup("Reviewer") >
-					AND a.uuid NOT IN  (	SELECT c.assetid FROM cah.approval c
+					AND a.uuid NOT IN  (	SELECT c.assetid FROM approval c
 											WHERE 	c.assetid = a.uuid AND
 													c.reviewtype = 'peer' AND 
 													c.approver = '#session.mura.userid#')
 				<cfelseif $.currentUser().isInGroup("Developer") >
-		 			AND (	SELECT Count(*) FROM cah.approval c
+		 			AND (	SELECT Count(*) FROM approval c
 							WHERE 	c.assetid = a.uuid AND
 									c.reviewtype = 'peer') > 1 
 					GROUP BY a.uuid
 				</cfif>
-
 		</cfif>
 		
 		</cfquery>
 
-<!---
 		<cfcatch><cfrethrow><cfset qryAssets = QueryNew("none") /></cfcatch>		
 	</cftry>
---->
+
 	<cfreturn qryAssets />
 </cffunction>
 
@@ -1136,15 +1123,18 @@ to your own modified versions of Mura CMS.
 
 	<cftry>
 		<cfquery datasource="cah" name="getAssets">
-		SELECT * FROM cah.asset 
+		SELECT * FROM asset 
 		WHERE 	uuid = '#arguments.thisAsset#'
 		</cfquery>
 
-		<cfcatch><cfset getAssets = QueryNew("none") /></cfcatch>
+		<cfset statusData = $.getStatus(getAssets.uuid) />
+
+		<cfcatch>
+			<cfset getAssets = QueryNew("none") />
+			<cfset statusData = $.getStatus("none") />
+		</cfcatch>
 	</cftry>
 
-	<cfset statusData = $.getStatus(getAssets.uuid) />
-	
 	<script>
 	function showStatusWin() {
 		$('html, body').animate({
@@ -1389,7 +1379,8 @@ to your own modified versions of Mura CMS.
 		<!-- 
 		function unityReady() {
 		<cfif statusData.statuscode does not contain "[c]">
-			u.getUnity().SendMessage("Rig", "LoadAsset", "#getAssets.viewer#");
+			<cfset unityAssetUrl = 	$.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+			u.getUnity().SendMessage("Rig", "LoadAsset", "#unityAssetUrl#");
 		</cfif>
 		}
 		-->
@@ -1420,121 +1411,123 @@ to your own modified versions of Mura CMS.
 
 	<cfset sldImg = "#$.siteConfig('themeAssetPath')#/images/cah/slide-general-default.png" />
 
-	<cfset imgs=$.getBean("feed").loadBy(name=arguments.colImages,siteID=$.event("siteid")) />
-	<cfset itImage=imgs.getIterator() />
-	<cfset imgStore = StructNew() />
-	<cfif itImage.hasNext()>
-		<cfscript>
-		while(itImage.hasNext()) {
-			imgItem = itImage.next();
-			// Set Cat Name and Default
-			if (Len(Trim(imgItem.getValue('remoteCatSlide')))) {
-				catName = imgItem.getValue('remoteCatSlide');
-			} else {
-				catName = "imgDefault";
-			}
-			
-			// Determine Image to Use 
-			if (Len(Trim(imgItem.getImageUrl('cycle')))) {
-				catUrl = imgItem.getImageUrl('cycle');
-			} elseif (Len(Trim(imgItem.getBody())) and imgItem.getBody() does not contain "<p>") {
-				catUrl = imgItem.getBody();
-			} else {
-				catUrl = sldImg;
-			}
-
-			if (NOT StructKeyExists(imgStore, catName)) {
-				tmpArray = ArrayNew();
-				ArrayAppend(tmpArray, catUrl);
-				StructInsert(imgStore, catName, Duplicate(tmpArray));
-			} else {
-				tmpArray = StructFind(imgStore, catName);
-				ArrayAppend(tmpArray, catUrl);
-				StructUpdate(imgStore, catName, Duplicate(tmpArray));
-			}
-		}
-		</cfscript>
-	</cfif>
-
 	<cfset feed=$.getBean("feed").loadBy(name=arguments.colFeed,siteID=$.event("siteid")) />
 	<cfset itFeed=feed.getIterator() />
 
+	<cfif itFeed.hasNext()>
+	<cftry>
 
-	<cfsavecontent variable="rtn">
-		<script>
-		function newsClick(url, target, param){
-			if (!target.length || target == "_self") {
-				window.location.href = url;
+		<cfset imgs=$.getBean("feed").loadBy(name=arguments.colImages,siteID=$.event("siteid")) />
+		<cfset itImage=imgs.getIterator() />
+		<cfset imgStore = StructNew() />
+		<cfif itImage.hasNext()>
+			<cfscript>
+			while(itImage.hasNext()) {
+				imgItem = itImage.next();
+				// Set Cat Name and Default
+				if (Len(Trim(imgItem.getValue('remoteCatSlide')))) {
+					catName = imgItem.getValue('remoteCatSlide');
+				} else {
+					catName = "imgDefault";
+				}
+				
+				// Determine Image to Use 
+				if (Len(Trim(imgItem.getImageUrl('cycle')))) {
+					catUrl = imgItem.getImageUrl('cycle');
+				} elseif (Len(Trim(imgItem.getBody())) and imgItem.getBody() does not contain "<p>") {
+					catUrl = imgItem.getBody();
+				} else {
+					catUrl = sldImg;
+				}
+	
+				if (NOT StructKeyExists(imgStore, catName)) {
+					tmpArray = ArrayNew();
+					ArrayAppend(tmpArray, catUrl);
+					StructInsert(imgStore, catName, Duplicate(tmpArray));
+				} else {
+					tmpArray = StructFind(imgStore, catName);
+					ArrayAppend(tmpArray, catUrl);
+					StructUpdate(imgStore, catName, Duplicate(tmpArray));
+				}
 			}
-			else {
-				newsOpen = window.open(url, target);
-				newsOpen.focus();
+			</cfscript>
+		</cfif>
+
+		<cfsavecontent variable="rtn">
+			<script>
+			function newsClick(url, target, param){
+				if (!target.length || target == "_self") {
+					window.location.href = url;
+				}
+				else {
+					newsOpen = window.open(url, target);
+					newsOpen.focus();
+				}
 			}
-		}
-		</script>
-
-		<cfoutput>
-			<cfif itFeed.hasNext()>
-			<div id="homehero" class="stonebordersm">
-				<div class="cycle-slideshow" 
-						data-cycle-fx="fade" 
-						data-cycle-pause-on-hover="true" 
-						data-cycle-speed="1500"
-						data-cycle-manual-speed="700"
-						data-cycle-timeout="7500"
-				    	data-cycle-swipe="true"
-						data-cycle-swipe-fx="scrollHorz"
-						data-cycle-caption-plugin="caption2"
-						data-cycle-overlay-fx-sel=">div"
-						data-cycle-overlay-fx-in="fadeIn"
-						data-cycle-overlay-fx-out="fadeOut"
-						data-cycle-caption-fx-in="slideDown"
-						data-cycle-caption-fx-out="slideUp"
-				>
-					<div class="cycle-prev"></div>
-					<div class="cycle-next"></div>
-
-					<cfloop condition="itFeed.hasNext()">
-						<cfset item=itFeed.next()>
-						<cfset makeClick = "newsClick('/index.cfm/#item.getValue('filename')#','#item.getValue('target')#','#item.getValue('targetparams')#');" >
-
-						<cfif StructKeyExists(imgStore, item.getValue('remoteCat')) >
-							<cfset thisCatImgs = StructFind(imgStore, item.getValue('remoteCat')) />
-							<cfif IsArray(thisCatImgs) >
+			</script>
+	
+			<cfoutput>
+				<div id="homehero" class="stonebordersm">
+					<div class="cycle-slideshow" 
+							data-cycle-fx="fade" 
+							data-cycle-pause-on-hover="true" 
+							data-cycle-speed="1500"
+							data-cycle-manual-speed="700"
+							data-cycle-timeout="7500"
+					    	data-cycle-swipe="true"
+							data-cycle-swipe-fx="scrollHorz"
+							data-cycle-caption-plugin="caption2"
+							data-cycle-overlay-fx-sel=">div"
+							data-cycle-overlay-fx-in="fadeIn"
+							data-cycle-overlay-fx-out="fadeOut"
+							data-cycle-caption-fx-in="slideDown"
+							data-cycle-caption-fx-out="slideUp"
+					>
+						<div class="cycle-prev"></div>
+						<div class="cycle-next"></div>
+	
+						<cfloop condition="itFeed.hasNext()">
+							<cfset item=itFeed.next()>
+							<cfset makeClick = "newsClick('/index.cfm/#item.getValue('filename')#','#item.getValue('target')#','#item.getValue('targetparams')#');" >
+	
+							<cfif StructKeyExists(imgStore, item.getValue('remoteCat')) >
+								<cfset thisCatImgs = StructFind(imgStore, item.getValue('remoteCat')) />
+								<cfif IsArray(thisCatImgs) >
+									<cfset lottery = RandRange(1, ArrayLen(thisCatImgs)) />
+									<cfset curSldImg = thisCatImgs[lottery] />
+								<cfelse>
+									<cfset curSldImg = sldImg />
+								</cfif>
+							<cfelseif StructKeyExists(imgStore, "imgDefault") >
+								<cfset thisCatImgs = StructFind(imgStore, "imgDefault") />
 								<cfset lottery = RandRange(1, ArrayLen(thisCatImgs)) />
 								<cfset curSldImg = thisCatImgs[lottery] />
 							<cfelse>
 								<cfset curSldImg = sldImg />
 							</cfif>
-						<cfelseif StructKeyExists(imgStore, "imgDefault") >
-							<cfset thisCatImgs = StructFind(imgStore, "imgDefault") />
-							<cfset lottery = RandRange(1, ArrayLen(thisCatImgs)) />
-							<cfset curSldImg = thisCatImgs[lottery] />
-						<cfelse>
-							<cfset curSldImg = sldImg />
-						</cfif>
-						
-						<cfif Len(Trim(item.getValue('title'))) and item.getValue('title') neq "<p></p>" >
-							<cfset sldTitle = Replace(item.getValue('title'), """", "","all") />
-						<cfelse>
-							<cfset sldTitle = "Untitled" />
-						</cfif>
-						<cfif Len(Trim(item.getSummary())) and item.getSummary() neq "<p></p>" >
-							<cfset sldDesc = Replace(item.getSummary(), """", "","all") />
-						<cfelse>
-							<cfset sldDesc = "<p>&nbsp;</p>" />
-						</cfif>
-						<img src="#curSldImg#" onclick="#makeClick#" data-cycle-title="#sldTitle#" data-cycle-desc="#sldDesc#">
-					</cfloop>
-
-					<div class="cycle-overlay"></div>
-					<div class="cycle-caption"></div>
+							
+							<cfif Len(Trim(item.getValue('title'))) and item.getValue('title') neq "<p></p>" >
+								<cfset sldTitle = Replace(item.getValue('title'), """", "","all") />
+							<cfelse>
+								<cfset sldTitle = "Untitled" />
+							</cfif>
+							<cfif Len(Trim(item.getSummary())) and item.getSummary() neq "<p></p>" >
+								<cfset sldDesc = Replace(item.getSummary(), """", "","all") />
+							<cfelse>
+								<cfset sldDesc = "<p>&nbsp;</p>" />
+							</cfif>
+							<img src="#curSldImg#" onclick="#makeClick#" data-cycle-title="#sldTitle#" data-cycle-desc="#sldDesc#">
+						</cfloop>
+	
+						<div class="cycle-overlay"></div>
+						<div class="cycle-caption"></div>
+					</div>
 				</div>
-			</div>
-			</cfif>
-		</cfoutput>
-
-	</cfsavecontent>
+			</cfoutput>
+		</cfsavecontent>
+		<cfcatch type="any"><p><strong>ERROR:</strong> Unable to display slideshow.</p></cfcatch>
+	</cftry>
+	</cfif>
 
 	<cfreturn rtn >
 
@@ -1542,7 +1535,7 @@ to your own modified versions of Mura CMS.
 
 <cffunction name="renderCycle">
 	<cfargument name="collection" type="string" required="false" default="[ Callouts ]"/>
-	
+	<!--- // Replaced by renderCycleByCat //
 	<cfset var rtn = "">
 	<cfset var feed = "">
 	<cfset var iterator = "">
@@ -1603,6 +1596,7 @@ to your own modified versions of Mura CMS.
 	</cfsavecontent>
 
 	<cfreturn rtn >
+	--->
 </cffunction>
 
 <cffunction name="getPageUrl" output="no" returntype="string">
@@ -1650,34 +1644,36 @@ to your own modified versions of Mura CMS.
 </cffunction>
 
 <!--- // END Rollups // --->
-
-
-<!--- // Overloaded // --->
 <cffunction name="allowLink" output="false" returntype="boolean">
 			<cfargument name="restrict" type="numeric"  default=0>
 			<cfargument name="restrictgroups" type="string" default="" />
 			<cfargument name="loggedIn"  type="numeric" default=0 />
 			<cfargument name="rspage"  type="query" />
 		
-			<cfset var allowLink=true>
-			<cfset var G = 0 />
+			<cfset var allowLink = true>
 			<cfif  arguments.loggedIn and (arguments.restrict)>
-						<cfif arguments.restrictgroups eq '' or listFind(session.mura.memberships,'S2IsPrivate;#application.settingsManager.getSite(variables.event.getValue('siteID')).getPrivateUserPoolID()#') or listFind(session.mura.memberships,'S2')>
-									<cfset allowLink=True>
-							<cfelseif arguments.restrictgroups neq ''>
-									<cfset allowLink=False>
-									<cfloop list="#arguments.restrictgroups#" index="G">
-										<cfif listFind(session.mura.memberships,'#G#;#application.settingsManager.getSite(variables.event.getValue('siteID')).getPublicUserPoolID()#;1')>
-										<cfset allowLink=true>
-										</cfif>
-									</cfloop>
-							</cfif>
+				<cfif 	arguments.restrictgroups eq '' or 
+						listFind(session.mura.memberships,'S2IsPrivate;#application.settingsManager.getSite(variables.event.getValue('siteID')).getPrivateUserPoolID()#') or 
+						listFind(session.mura.memberships,'S2')>
+					<cfset allowLink = true>
+				<!--- // Else condition hides restricted menu items from those not authorized // --->
+				<cfelseif arguments.restrictgroups neq ''>
+					<cfset allowLink = false>
+					<cfloop list="#arguments.restrictgroups#" index="G">
+						<cfif listFind(session.mura.memberships,'#G#;#application.settingsManager.getSite(variables.event.getValue('siteID')).getPublicUserPoolID()#;1')>
+							<cfset allowLink = true>
+						</cfif>
+					</cfloop>
+				</cfif>
 			<cfelseif !arguments.loggedin and arguments.restrict>
-				<cfset allowLink=false>
+				<cfset allowLink = false>
 			</cfif>
 			
 		<cfreturn allowLink>
 </cffunction>
+
+<!--- // Overloaded // --->
+
 <!--- // END Overloaded // --->
 
 </cfcomponent>
