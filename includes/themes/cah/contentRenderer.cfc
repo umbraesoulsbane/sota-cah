@@ -1375,11 +1375,11 @@ to your own modified versions of Mura CMS.
 		</dl>
 		<a class="actionItem" href="#$.content().getURL()##passQueue#">Return to List</a>
 
+		<cfset unityAssetUrl = Replace($.siteConfig('assetPath'),"/#$.siteConfig('siteid')#","","ALL") & "/bundle/" & getAssets.viewer & ".unity3d" />
 		<script type="text/javascript">
 		<!-- 
 		function unityReady() {
 		<cfif statusData.statuscode does not contain "[c]">
-			<cfset unityAssetUrl = 	$.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
 			u.getUnity().SendMessage("Rig", "LoadAsset", "#unityAssetUrl#");
 		</cfif>
 		}
