@@ -1226,7 +1226,7 @@ to your own modified versions of Mura CMS.
 					</select>
 					<textarea name="feedback" placeholder="Enter Feedback"></textarea>
 					</div>
-					<div><input type="submit" value="Levy Judgement"><input type="button" value="Cancel" onclick="hideFeedbackForm(1);"></div>
+					<div><input type="submit" value="Okay"><input type="button" value="Cancel" onclick="hideFeedbackForm(1);"></div>
 					<cfif $.currentUser().isInGroup("Developer") >
 						<input type="hidden" name="reviewtype" value="dev">
 					<cfelseif $.currentUser().isInGroup("Reviewer") >
@@ -1374,8 +1374,21 @@ to your own modified versions of Mura CMS.
 
 		</dl>
 		<a class="actionItem" href="#$.content().getURL()##passQueue#">Return to List</a>
-
-		<cfset unityAssetUrl = Replace($.siteConfig('assetPath'),"/#$.siteConfig('siteid')#","","ALL") & "/bundle/" & getAssets.viewer & ".unity3d" />
+		<cftry>
+			<cfif Len($.globalConfig('assetPath')) gte 4 and Left($.globalConfig('assetPath'), 4) eq "http">
+				<cfset unityAssetUrl = $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+			<cfelse>
+				<cfif cgi.https eq "on">
+					<cfset unityAssetUrl = "https://" & $.siteConfig('domain') & "/" & $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+				<cfelse>
+					<cfset unityAssetUrl = "http://" & $.siteConfig('domain') & "/" & $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+				</cfif>
+			</cfif>
+		
+			<cfcatch type="amy">
+				<cfset unityAssetUrl = "http://" & $.siteConfig('domain') & "/bundle/error.unity3d" />
+			</cfcatch>
+		</cftry>
 		<script type="text/javascript">
 		<!-- 
 		function unityReady() {

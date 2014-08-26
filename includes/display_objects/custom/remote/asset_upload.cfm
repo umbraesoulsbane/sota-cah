@@ -11,23 +11,17 @@
 	<cftry>
 		<cfset $ = application.serviceFactory.getBean('$').init(url.siteid) />
 		
-		<cfif $.siteConfig('assetdir') contains "/#$.siteConfig('siteid')#" >
-			<cfset writePath = $.siteConfig('assetdir') />
-		<cfelse>
-			<cfset writePath = $.siteConfig('assetdir') & "/" & $.siteConfig('siteid') />
-		</cfif>
-		<cfif $.siteConfig('assetPath') contains "/#$.siteConfig('siteid')#" >
-			<cfset readPath = $.siteConfig('assetPath') />
-		<cfelse>
-			<cfset readPath = $.siteConfig('assetPath') & "/" & $.siteConfig('siteid') />
-		</cfif>
-		
+		<cfset writePath = $.globalConfig('assetdir') & "/" & $.siteConfig('siteid') />
+		<cfset readPath = $.globalConfig('assetPath') & "/" & $.siteConfig('siteid') />
 		<cfset rawPath = "/assets/uploads/" />
+
 		<cffile action="upload" filefield="file" destination="#ExpandPath(writePath & rawPath)#" nameconflict="overwrite" />
 				
 		<cfset rawFile = form.assetid & "." & cffile.serverFileExt />
-				
-		<cfif cgi.https eq "on">
+
+		<cfif Len($.globalConfig('assetPath')) gte 4 and Left($.globalConfig('assetPath'), 4) eq "http">
+			<cfset rawProto = "" />
+		<cfelseif cgi.https eq "on">
 			<cfset rawProto = "https://" />
 		<cfelse>
 			<cfset rawProto = "http://" />
