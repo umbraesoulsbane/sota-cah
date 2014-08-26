@@ -1294,8 +1294,8 @@ to your own modified versions of Mura CMS.
 			<dd class="previewU3D">
 				<div id="unityPlayer">
 					<div class="missing">
-					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					<a href="//unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="//webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
 					</a>
 					</div>
 				</div>

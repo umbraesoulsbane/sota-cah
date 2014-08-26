@@ -47,12 +47,10 @@
 					break;
 				case "first":
 					break;
+				default:
+					$("#unityPlayer").html("<p class='err'>Unity Player unsupported on your device.</p>");
 			}
 		});
-		<!--- 
-			//u.initPlugin(jQuery("#unityPlayer")[0], <cfoutput>"#getAssets.viewer#"</cfoutput>);
-			//u.initPlugin(jQuery("#unityPlayer")[0], <cfoutput>"http://unity.onarom.com/sota/sota.unity3d"</cfoutput>);
-		--->
 		u.initPlugin(jQuery("#unityPlayer")[0], <cfoutput>"#$.siteConfig('assetPath')#/assets/File/sota.unity3d"</cfoutput>);
 	});
 	-->

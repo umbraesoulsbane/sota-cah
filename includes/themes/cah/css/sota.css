@@ -350,6 +350,16 @@ tr.alt td { background: #eee; }  /*Move*/
 .myassets dd.previewU3D #unityPlayer {
     text-align: center;
     width: 100%;
+    min-height: 100px;
+}
+.myassets dd.previewU3D #unityPlayer .err {
+    line-height: 100px;
+    font-size: 2em;
+    font-weight: bold;
+    color: Black;
+}
+.myassets dd.previewU3D #unityPlayer .missing {
+    padding-top: 20px;
 }
 .myassets dd.previewU3D #unityPlayer embed,
 .myassets dd.previewU3D #unityPlayer object {
