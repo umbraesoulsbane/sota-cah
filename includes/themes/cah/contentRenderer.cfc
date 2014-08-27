@@ -1657,6 +1657,9 @@ to your own modified versions of Mura CMS.
 </cffunction>
 
 <!--- // END Rollups // --->
+
+<!--- // Overloaded // --->
+<!---
 <cffunction name="allowLink" output="false" returntype="boolean">
 			<cfargument name="restrict" type="numeric"  default=0>
 			<cfargument name="restrictgroups" type="string" default="" />
@@ -1684,8 +1687,7 @@ to your own modified versions of Mura CMS.
 			
 		<cfreturn allowLink>
 </cffunction>
-
-<!--- // Overloaded // --->
+--->
 
 <!--- // END Overloaded // --->
 
