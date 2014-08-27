@@ -1450,7 +1450,7 @@ to your own modified versions of Mura CMS.
 				} elseif (Len(Trim(imgItem.getBody())) and imgItem.getBody() does not contain "<p>") {
 					catUrl = imgItem.getBody();
 				} else {
-					catUrl = sldImg;
+					catUrl = sldImg & "?empty";
 				}
 	
 				if (NOT StructKeyExists(imgStore, catName)) {
@@ -1509,14 +1509,14 @@ to your own modified versions of Mura CMS.
 									<cfset lottery = RandRange(1, ArrayLen(thisCatImgs)) />
 									<cfset curSldImg = thisCatImgs[lottery] />
 								<cfelse>
-									<cfset curSldImg = sldImg />
+									<cfset curSldImg = sldImg & "?lotto" />
 								</cfif>
 							<cfelseif StructKeyExists(imgStore, "imgDefault") >
 								<cfset thisCatImgs = StructFind(imgStore, "imgDefault") />
 								<cfset lottery = RandRange(1, ArrayLen(thisCatImgs)) />
 								<cfset curSldImg = thisCatImgs[lottery] />
 							<cfelse>
-								<cfset curSldImg = sldImg />
+								<cfset curSldImg = sldImg & "?default" />
 							</cfif>
 							
 							<cfif Len(Trim(item.getValue('title'))) and item.getValue('title') neq "<p></p>" >
