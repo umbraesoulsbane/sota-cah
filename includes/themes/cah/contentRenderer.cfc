@@ -1533,6 +1533,7 @@ to your own modified versions of Mura CMS.
 							<cfelse>
 								<cfset sldDesc = "<p>&nbsp;</p>" />
 							</cfif>
+							<!-- #item.getValue('remoteCat')# -->
 							<img src="#curSldImg#" onclick="#makeClick#" data-cycle-title="#sldTitle#" data-cycle-desc="#sldDesc#">
 						</cfloop>
 	
