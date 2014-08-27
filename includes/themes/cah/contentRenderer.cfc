@@ -1376,12 +1376,12 @@ to your own modified versions of Mura CMS.
 		<a class="actionItem" href="#$.content().getURL()##passQueue#">Return to List</a>
 		<cftry>
 			<cfif Len($.globalConfig('assetPath')) gte 4 and Left($.globalConfig('assetPath'), 4) eq "http">
-				<cfset unityAssetUrl = $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+				<cfset unityAssetUrl = $.globalConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
 			<cfelse>
-				<cfif cgi.https eq "on">
-					<cfset unityAssetUrl = "https://" & $.siteConfig('domain') & "/" & $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+				<cfif cgi.server_port eq "443">
+					<cfset unityAssetUrl = "https://" & $.siteConfig('domain') & "/" & $.globalConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
 				<cfelse>
-					<cfset unityAssetUrl = "http://" & $.siteConfig('domain') & "/" & $.siteConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
+					<cfset unityAssetUrl = "http://" & $.siteConfig('domain') & "/" & $.globalConfig('assetPath') & "/bundle/" & getAssets.viewer & ".unity3d" />
 				</cfif>
 			</cfif>
 		
@@ -1414,6 +1414,7 @@ to your own modified versions of Mura CMS.
 <cffunction name="renderCycleByCat">
 	<cfargument name="colFeed" type="string" required="false" default="[ Callouts ] Promos"/>
 	<cfargument name="colImages" type="string" required="false" default="[ Callout Images ]"/>
+	<cfargument name="debugger" type="boolean" required="false" default="false"/>
 	
 	<cfset $.addToHTMLHeadQueue("/#$.siteConfig('siteid')#/includes/display_objects/custom/cycle_jslib.cfm")>
 	
@@ -1467,6 +1468,9 @@ to your own modified versions of Mura CMS.
 		</cfif>
 
 		<cfsavecontent variable="rtn">
+<cfif arguments.debugger >
+	<cfdump var="#imgStore#">
+</cfif>
 			<script>
 			function newsClick(url, target, param){
 				if (!target.length || target == "_self") {
