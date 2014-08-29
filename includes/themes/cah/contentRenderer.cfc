@@ -1468,9 +1468,6 @@ to your own modified versions of Mura CMS.
 		</cfif>
 
 		<cfsavecontent variable="rtn">
-<cfif arguments.debugger >
-	<cfdump var="#imgStore#">
-</cfif>
 			<script>
 			function newsClick(url, target, param){
 				if (!target.length || target == "_self") {
