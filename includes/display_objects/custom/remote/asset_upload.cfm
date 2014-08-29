@@ -21,7 +21,7 @@
 
 		<cfif Len($.globalConfig('assetPath')) gte 4 and Left($.globalConfig('assetPath'), 4) eq "http">
 			<cfset rawProto = "" />
-		<cfelseif cgi.https eq "on">
+		<cfelseif cgi.server_port eq "443">
 			<cfset rawProto = "https://" />
 		<cfelse>
 			<cfset rawProto = "http://" />
@@ -31,7 +31,7 @@
 				source="#ExpandPath(writePath & rawPath & cffile.serverFile)#" 
 				destination="#ExpandPath(writePath & rawPath & rawFile)#" />
 		
-		<cfset rawURL = rawProto & $.siteConfig('domain') & readPath & rawPath & rawFile />
+		<cfset rawURL = rawProto & iif(Len(Trim(rawProto)), "$.siteConfig('domain')", de("")) & readPath & rawPath & rawFile />
 
 		<cfcatch type="any">
 			<cfset rtn.err 		= true />
@@ -48,13 +48,13 @@
 <!--- set rtn values --->
 <cftry>
 	<cfif NOT rtn.err >
-		<cfset rtn.url 		= rawURL />
+		<cfset rtn.url 		= Trim(rawURL) />
 	</cfif>				
 
 	<cfcatch type="any">
 		<cfset rtn.err 		= true />
 		<cfset rtn.errMsg 	= "Cannot finish." />
-		<cfset rtn.url 		= rawURL />
+		<cfset rtn.url 		= Trim(rawURL) />
 	</cfcatch>
 </cftry>
 
