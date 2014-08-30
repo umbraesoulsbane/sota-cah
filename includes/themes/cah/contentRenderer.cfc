@@ -767,6 +767,7 @@ to your own modified versions of Mura CMS.
 
 			<cfcatch>
 				<cftransaction action="rollback" />
+				<cfrethrow />
 			</cfcatch>
 		</cftry>
 	
