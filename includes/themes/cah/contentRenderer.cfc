@@ -203,48 +203,61 @@ to your own modified versions of Mura CMS.
 		<cfset thisCat = "" />
 		<cfset statArray = ArrayNew() />
 		
+		<cfset 		gdf 			= StructNew() />
+		
+			<!--- // Change these to match Spreadsheet // --->
+			<cfset 	gdf.itemid 		= "gsx:itemid" />
+			<cfset 	gdf.notes 		= "gsx:notesreferences" />
+			<cfset 	gdf.priority 	= "gsx:priority" />
+			<cfset 	gdf.desc 		= "gsx:description" />
+			<cfset 	gdf.type 		= "gsx:type" />
+			<cfset 	gdf.bounty 		= "gsx:bounty" />
+			<cfset 	gdf.name 		= "gsx:name" />
+			<cfset 	gdf.status 		= "gsx:status" />
+	
+		
 		<cfloop index="gd" from="1" to="#ArrayLen(xmlDocs)#">
 			<cfset isSave = false />
 
-			<cfif Len(Trim(xmlDocs[gd]["gsx:id"].xmltext)) >
-				<cfset isPage = $.getBean("content").loadBy(remoteID=xmlDocs[gd]["gsx:id"].xmltext,siteID=$.event("siteid")) />
-				<cfset statMsg = "<strong>Processing:</strong> " & xmlDocs[gd]["gsx:id"].xmltext />
+			<cfif Len(Trim(xmlDocs[gd][gdf.itemid].xmltext)) >
+				<cfset isPage = $.getBean("content").loadBy(remoteID=xmlDocs[gd][gdf.itemid].xmltext,siteID=$.event("siteid")) />
+				<cfset statMsg = "<strong>Processing:</strong> " & xmlDocs[gd][gdf.itemid].xmltext />
 				<cfset statCode = "" />
 				
 				<cfif Len(Trim(isPage.getMenuTitle())) >
 					<cfif DateCompare(isPage.getValue("LASTUPDATE"), xmlDocs[gd].updated.xmltext) eq -1 >
 						<cfscript>
-							updField = " (" & isPage.getValue('display') & "|" & xmlDocs[gd]["gsx:priority"].xmltext & "|" & xmlDocs[gd]["gsx:status"].xmltext;
-							if (isPage.getTitle() neq xmlDocs[gd]["gsx:name"].xmltext) {
-								isPage.setTitle(xmlDocs[gd]["gsx:name"].xmltext);
+							updField = " (" & isPage.getValue('display') & "|" & xmlDocs[gd][gdf.priority].xmltext & "|" & xmlDocs[gd][gdf.status].xmltext;
+							if (isPage.getTitle() neq xmlDocs[gd][gdf.name].xmltext) {
+								isPage.setTitle(xmlDocs[gd][gdf.name].xmltext);
 								isPage.setMenuTitle('');
 								isPage.setURLTitle('');
 								isPage.setHTMLTitle('');
 								isSave = true;
 								updField &= "-Title-";
 							}
-							if (isPage.getSummary() neq "<p>#xmlDocs[gd]["gsx:description"].xmltext#</p>") {
-								isPage.setSummary("<p>" & xmlDocs[gd]["gsx:description"].xmltext & "</p>");
+							if (isPage.getSummary() neq "<p>#xmlDocs[gd][gdf.desc].xmltext#</p>") {
+								isPage.setSummary("<p>" & xmlDocs[gd][gdf.desc].xmltext & "</p>");
 								isSave = true;
 								updField &= "-Summary-";
 							}
-							if (isPage.getBody() neq "<p>#xmlDocs[gd]["gsx:notes"].xmltext#</p>") {
-								isPage.setBody("<p>" & xmlDocs[gd]["gsx:notes"].xmltext & "</p>");
+							if (isPage.getBody() neq "<p>#xmlDocs[gd][gdf.notes].xmltext#</p>") {
+								isPage.setBody("<p>" & xmlDocs[gd][gdf.notes].xmltext & "</p>");
 								isSave = true;
 								updField &= "-Body-";
 							}
-							if (isPage.getValue('remoteID') neq xmlDocs[gd]["gsx:id"].xmltext) {
-								isPage.setRemoteID(xmlDocs[gd]["gsx:id"].xmltext);
+							if (isPage.getValue('remoteID') neq xmlDocs[gd][gdf.itemid].xmltext) {
+								isPage.setRemoteID(xmlDocs[gd][gdf.itemid].xmltext);
 								isSave = true;
 								updField &= "-Remoteid-";
 							}
-							if (isPage.getValue('assettype') neq xmlDocs[gd]["gsx:type"].xmltext) {
-								isPage.setValue('assettype', xmlDocs[gd]["gsx:type"].xmltext);
+							if (isPage.getValue('assettype') neq xmlDocs[gd][gdf.type].xmltext) {
+								isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
 								isSave = true;
 								updField &= "-Type-";
 							}
-							if (isPage.getValue('bounty') neq xmlDocs[gd]["gsx:bounty"].xmltext) {
-								isPage.setValue('bounty', xmlDocs[gd]["gsx:bounty"].xmltext);
+							if (isPage.getValue('bounty') neq xmlDocs[gd][gdf.bounty].xmltext) {
+								isPage.setValue('bounty', xmlDocs[gd][gdf.bounty].xmltext);
 								isSave = true;
 							}
 							if (isPage.getValue('remotecat') neq thisCat) {
@@ -252,22 +265,22 @@ to your own modified versions of Mura CMS.
 								isSave = true;
 								updField &= "-Cat-";
 							}
-							if (isPage.getValue('priority') neq xmlDocs[gd]["gsx:priority"].xmltext) {
-								if (ListFindNoCase("low,medium,high",xmlDocs[gd]["gsx:priority"].xmltext)) {
-									isPage.setValue('priority', xmlDocs[gd]["gsx:priority"].xmltext);
+							if (isPage.getValue('priority') neq xmlDocs[gd][gdf.priority].xmltext) {
+								if (ListFindNoCase("low,medium,high",xmlDocs[gd][gdf.priority].xmltext)) {
+									isPage.setValue('priority', xmlDocs[gd][gdf.priority].xmltext);
 									isSave = true;
 									updField &= "-Priority-";
-								} elseif (isPage.getValue('display') eq 0 and xmlDocs[gd]["gsx:priority"].xmltext eq "closed") {
+								} elseif (isPage.getValue('display') eq 0 and xmlDocs[gd][gdf.priority].xmltext eq "closed") {
 									// Do Nothing
 								} else {
 									isPage.setValue('priority', 'Low');
 									isSave = true;
 									updField &= "-Priority-";	
 								}
-							} elseif (isPage.getValue('display') eq 0 and (xmlDocs[gd]["gsx:priority"].xmltext neq "closed" and xmlDocs[gd]["gsx:status"].xmltext neq "closed")) {
+							} elseif (isPage.getValue('display') eq 0 and (xmlDocs[gd][gdf.priority].xmltext neq "closed" and xmlDocs[gd][gdf.status].xmltext neq "closed")) {
 								isSave = true;
 								updField &= "-Priority/WaxOn-";
-							} elseif (isPage.getValue('display') eq 1 and (xmlDocs[gd]["gsx:priority"].xmltext eq "closed" or xmlDocs[gd]["gsx:status"].xmltext eq "closed")) {
+							} elseif (isPage.getValue('display') eq 1 and (xmlDocs[gd][gdf.priority].xmltext eq "closed" or xmlDocs[gd][gdf.status].xmltext eq "closed")) {
 								isSave = true;
 								updField &= "-Priority/WaxOff-";
 							}
@@ -288,22 +301,22 @@ to your own modified versions of Mura CMS.
 					<cfset statMsg &= " (No Match: <strong>Add Page</strong>)" />
 
 					<cfscript>
-						isPage.setTitle(xmlDocs[gd]["gsx:name"].xmltext);
+						isPage.setTitle(xmlDocs[gd][gdf.name].xmltext);
 						isPage.setMenuTitle('');
 						isPage.setURLTitle('');
 						isPage.setHTMLTitle('');
 						isPage.setApproved(1);
-						isPage.setSummary("<p>" & xmlDocs[gd]["gsx:description"].xmltext & "</p>");
-						isPage.setBody("<p>" & xmlDocs[gd]["gsx:notes"].xmltext & "</p>");
+						isPage.setSummary("<p>" & xmlDocs[gd][gdf.desc].xmltext & "</p>");
+						isPage.setBody("<p>" & xmlDocs[gd][gdf.notes].xmltext & "</p>");
 						isPage.setParentID(parent.getContentID());
-						isPage.setRemoteID(xmlDocs[gd]["gsx:id"].xmltext);
+						isPage.setRemoteID(xmlDocs[gd][gdf.itemid].xmltext);
 						isPage.setSubType("Callouts");
 							
-						isPage.setValue('assettype', xmlDocs[gd]["gsx:type"].xmltext);
-						isPage.setValue('bounty', xmlDocs[gd]["gsx:bounty"].xmltext);
+						isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
+						isPage.setValue('bounty', xmlDocs[gd][gdf.bounty].xmltext);
 						isPage.setValue('remotecat', thisCat);
-						if (ListFindNoCase("low,medium,high",xmlDocs[gd]["gsx:priority"].xmltext)) {
-							isPage.setValue('priority', xmlDocs[gd]["gsx:priority"].xmltext);
+						if (ListFindNoCase("low,medium,high",xmlDocs[gd][gdf.priority].xmltext)) {
+							isPage.setValue('priority', xmlDocs[gd][gdf.priority].xmltext);
 						} else {
 							isPage.setValue('priority', 'Low');
 						}
@@ -315,7 +328,7 @@ to your own modified versions of Mura CMS.
 				<cfif isSave >
 					<cfset statCode = "U" />
 					<cfscript>							
-						if (xmlDocs[gd]["gsx:priority"].xmltext eq "closed" or xmlDocs[gd]["gsx:status"].xmltext eq "closed") {
+						if (xmlDocs[gd][gdf.priority].xmltext eq "closed" or xmlDocs[gd][gdf.status].xmltext eq "closed") {
 							isPage.setDisplay(0);
 							isPage.setIsNav(0);
 						} else {
@@ -343,7 +356,7 @@ to your own modified versions of Mura CMS.
 				<cfset ArrayAppend(statArray, Duplicate(tempStr)) />
 
 			<cfelse>
-				<cfset thisCat = xmlDocs[gd]["gsx:name"].xmltext />
+				<cfset thisCat = xmlDocs[gd][gdf.name].xmltext />
 			</cfif>
 
 		</cfloop>
