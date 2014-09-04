@@ -252,7 +252,11 @@ to your own modified versions of Mura CMS.
 								updField &= "-Remoteid-";
 							}
 							if (isPage.getValue('assettype') neq xmlDocs[gd][gdf.type].xmltext) {
-								isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
+								if (Len(Trim(xmlDocs[gd][gdf.type].xmltext))) {
+									isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
+								} else {
+									isPage.setValue('assettype', 'Prop');
+								}
 								isSave = true;
 								updField &= "-Type-";
 							}
@@ -311,8 +315,13 @@ to your own modified versions of Mura CMS.
 						isPage.setParentID(parent.getContentID());
 						isPage.setRemoteID(xmlDocs[gd][gdf.itemid].xmltext);
 						isPage.setSubType("Callouts");
-							
-						isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
+
+						if (Len(Trim(xmlDocs[gd][gdf.type].xmltext))) {
+							isPage.setValue('assettype', xmlDocs[gd][gdf.type].xmltext);
+						} else {
+							isPage.setValue('assettype', 'Prop');
+						}
+						
 						isPage.setValue('bounty', xmlDocs[gd][gdf.bounty].xmltext);
 						isPage.setValue('remotecat', thisCat);
 						if (ListFindNoCase("low,medium,high",xmlDocs[gd][gdf.priority].xmltext)) {
@@ -612,6 +621,38 @@ to your own modified versions of Mura CMS.
 	<cfreturn getFeedback />
 </cffunction>
 
+<cffunction name="getAssetSubs" output="no" returntype="int">
+	<cfargument name="assetid" type="string" required="true" default="NA"/>
+	
+	<cftry>
+		<cfquery datasource="cah" name="qryAssetsSubs">
+		SELECT * FROM asset 
+		WHERE 	uuid = '#arguments.assetid#' AND
+				( final_status = '' OR final_status IS NULL )
+		</cfquery>
+
+		<cfcatch><cfrethrow><cfset qryAssetsSubs = QueryNew("none") /></cfcatch>		
+	</cftry>
+	
+	<cfreturn qryAssetsSubs.RecordCount />
+</cffunction>
+
+<cffunction name="getAssetApproved" output="no" returntype="int">
+	<cfargument name="assetid" type="string" required="true" default="NA"/>
+	
+	<cftry>
+		<cfquery datasource="cah" name="qryAssetsApp">
+		SELECT * FROM asset 
+		WHERE 	uuid = '#arguments.assetid#' AND
+				final_status = 'accepted'
+		</cfquery>
+
+		<cfcatch><cfrethrow><cfset qryAssetsApp = QueryNew("none") /></cfcatch>		
+	</cftry>
+	
+	<cfreturn qryAssetsApp.RecordCount />
+</cffunction>
+
 <cffunction name="getAssetList" output="no" returntype="query">
 	<cfargument name="type" type="string" required="true" default="NA"/>
 	<cfargument name="filter" type="string" required="false" default=""/>
@@ -864,7 +905,8 @@ to your own modified versions of Mura CMS.
 	<script>
 	$(document).ready(function() {
 		var table = $('#calloutTBL').DataTable({
-				"order": [[ 0, "asc" ]]
+				"order": [[ 0, "asc" ]],
+				"iDisplayLength": 50
 		});
 		$("#calloutTBL tfoot th").each( function ( i ) {
 			var select = $('<select><option value=""></option></select>').appendTo( $(this).empty() )
@@ -993,15 +1035,28 @@ to your own modified versions of Mura CMS.
 
 			<dt>Bounty:</dt>
 			<dd class="last">#$.content('bounty')#</dd>
-
 		</dl>
-<!--- Page Flipper Footer - If desired
-		<p style="clear: both;">&nbsp;</p>
+
+		<br clear="all">
+		<hr>
+
+		<div align="center">
+		<strong>Current Submissions for this Asset</strong>
+		<dl id="subcount">
+			<dt class="first">Awaiting Review:</dt>
+			<dd class="first">#$.getAssetSubs($.content('remoteid'))#</dd>
+
+			<dt class="last">Developer Approved:</dt>
+			<dd class="last">#$.getAssetApproved($.content('remoteid'))#</dd>
+		</dl>
+		</div>
+
+		<br clear="all">
+		<br/>
 		<div class="flipper">
 			<div><a href="#sibArray[nxtIdx].url#">[ #sibArray[nxtIdx].title# ] <strong>Next &gt;</strong></a></div>
 			<p><a href="#sibArray[prvIdx].url#"><strong>&lt; Prev</strong> [ #sibArray[prvIdx].title# ]</a></p>
 		</div>
---->
 	</cfoutput>
 	</div>
 

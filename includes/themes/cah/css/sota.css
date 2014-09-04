@@ -149,6 +149,49 @@ span.highlight {
 #primary .callout dd.last {
     margin: 0 0 0 0;
 }
+#primary .callout #subcount {
+    width: 500px;
+    text-align: left;
+}
+#primary .callout #subcount dt {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0;
+    float: none;
+    font-size: .8em;
+    font-weight: bold;
+    color: Silver;
+    width: 200px;
+    border: 1px solid #232323;
+    text-align: center;
+    background-color: #232323;
+}
+#primary .callout #subcount dd {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 0 0 0;
+    font-size: 1em;
+    border: 1px solid #232323;
+    width: 200px;
+    text-align: center;
+    background-color: Black;
+}
+#primary .callout #subcount dt.first {
+    float: left;
+    margin-right: 25px;
+}
+#primary .callout #subcount dt.last {
+    
+}
+#primary .callout #subcount dd.first {
+    float: left;
+    clear: left;
+    margin-right: 25px;    
+}
+#primary .callout #subcount dd.last {
+    
+    
+}
 #primary .callout .description {
     padding: 0 25px;
 }
