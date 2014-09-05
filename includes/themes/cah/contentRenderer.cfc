@@ -621,7 +621,7 @@ to your own modified versions of Mura CMS.
 	<cfreturn getFeedback />
 </cffunction>
 
-<cffunction name="getAssetSubs" output="no" returntype="int">
+<cffunction name="getAssetSubs" output="no" returntype="number">
 	<cfargument name="assetid" type="string" required="true" default="NA"/>
 	
 	<cftry>
@@ -637,7 +637,7 @@ to your own modified versions of Mura CMS.
 	<cfreturn qryAssetsSubs.RecordCount />
 </cffunction>
 
-<cffunction name="getAssetApproved" output="no" returntype="int">
+<cffunction name="getAssetApproved" output="no" returntype="number">
 	<cfargument name="assetid" type="string" required="true" default="NA"/>
 	
 	<cftry>
