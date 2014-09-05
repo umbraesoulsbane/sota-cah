@@ -1028,13 +1028,13 @@ to your own modified versions of Mura CMS.
 		
 		<dl>
 			<dt class="first">Type:</dt>
-			<dd>#$.content('assettype')#</dd>
+			<dd>#iif(Len(Trim($.content('assettype'))), "$.content('assettype')", de("&nbsp;&nbsp;&nbsp;"))#</dd>
 
 			<dt>Priority:</dt>
-			<dd>#$.content('priority')#</dd>
+			<dd>#iif(Len(Trim($.content('priority'))), "$.content('priority')", de("&nbsp;&nbsp;&nbsp;"))#</dd>
 
 			<dt>Bounty:</dt>
-			<dd class="last">#$.content('bounty')#</dd>
+			<dd class="last">#iif(Len(Trim($.content('bounty'))), "$.content('bounty')", de("&nbsp;&nbsp;&nbsp;"))#</dd>
 		</dl>
 
 		<br clear="all">

@@ -13,6 +13,7 @@ Author: Blue River Interactive Group
 ===================================== */
 html { 
 	background: url(../images/cah/darkstone.jpg);
+	overflow-y: scroll;
 }
 html, body {
     height:100%;
