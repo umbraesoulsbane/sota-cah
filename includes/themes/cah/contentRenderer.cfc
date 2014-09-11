@@ -1018,7 +1018,13 @@ to your own modified versions of Mura CMS.
 			#$.content('summary')#
 			<cfif Len(Trim(ReplaceList($.content('body'),"<p>,</p>",","))) >
 				<p class="label">Notes:</p>
-				#$.content('body')#
+				<cfif $.content('body') contains "http://" >
+					#REReplaceNoCase($.content('body'), "(\bhttp://[a-z0-9\.\-_:~@##%&/?+=]+)", "[<a href=""\1"" target=""_blank"">External Link</a>]", "all")#
+				<cfelseif $.content('body') contains "https://">
+					#REReplaceNoCase($.content('body'), "(\bhttps://[a-z0-9\.\-_:~@##%&/?+=]+)", "[<a href=""\1"" target=""_blank"">External Link</a>]", "all")#
+				<cfelse>
+					#$.content('body')#
+				</cfif>
 			</cfif>
 		</div>
 
