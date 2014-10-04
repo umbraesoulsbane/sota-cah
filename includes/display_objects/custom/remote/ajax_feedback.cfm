@@ -27,7 +27,7 @@
 	<li>
 		<ul>
 			<cfset cUser = $.getUserInfo(commenter) >
-			<li class="feedbackFrom"><b>From:</b> #cUser.fname# #cUser.lname# <p>#DateFormat(created, "mm/dd/yyyy")#</p></li>
+			<li class="feedbackFrom"><b>From:</b> #cUser.fname# <!--- #cUser.lname# ---> <p>#DateFormat(created, "mm/dd/yyyy")#</p></li>
 			<cfif Len(Trim(quickmessage)) >
 				<li class="feedbackQuick">#$.getPageName(quickmessage)# &nbsp; (<a href="#$.getPageUrl(quickmessage)#">more info</a>)</li>
 			</cfif>
